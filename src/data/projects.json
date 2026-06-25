@@ -1,0 +1,62 @@
+[
+  {
+    "id": "net-1",
+    "category": "Network Engineering",
+    "title": "SDN Campus Network Design",
+    "description": "Designed a Software Defined Networking architecture for a university campus with centralized control plane, VLANs, and QoS policies.",
+    "tech": ["Cisco Packet Tracer", "OpenFlow", "Python", "GNS3"],
+    "github": "https://github.com/sajana",
+    "demo": null,
+    "year": "2024"
+  },
+  {
+    "id": "web-1",
+    "category": "Web Development",
+    "title": "RightClick IT Services Site",
+    "description": "Full React/Vite website for an IT services company with GSAP animations, Lenis smooth scrolling, and a chat widget.",
+    "tech": ["React", "Vite", "GSAP", "Tailwind CSS"],
+    "github": "https://github.com/sajana",
+    "demo": "https://rightclick.lk",
+    "year": "2024"
+  },
+  {
+    "id": "web-2",
+    "category": "Web Development",
+    "title": "Ember & Oak Restaurant System",
+    "description": "Full-stack restaurant management with reservation wizard, overbooking prevention, QR codes, and admin dashboard.",
+    "tech": ["React", "Supabase", "Tailwind CSS", "Resend"],
+    "github": "https://github.com/sajana",
+    "demo": null,
+    "year": "2024"
+  },
+  {
+    "id": "ui-1",
+    "category": "UI/UX",
+    "title": "ClientFlow Desktop App",
+    "description": "Electron desktop CRM with client management, recurring payments, reports, and futuristic UI.",
+    "tech": ["Electron", "React", "SQLite", "Tailwind CSS"],
+    "github": "https://github.com/sajana",
+    "demo": null,
+    "year": "2023"
+  },
+  {
+    "id": "uni-1",
+    "category": "University Projects",
+    "title": "OFDM Signal Simulator",
+    "description": "MATLAB simulation of OFDM modulation with BER analysis across different channel models.",
+    "tech": ["MATLAB", "Signal Processing", "OFDM"],
+    "github": "https://github.com/Sajana4197",
+    "demo": null,
+    "year": "2023"
+  },
+  {
+    "id": "free-1",
+    "category": "Freelance",
+    "title": "Lumière Beauty Salon Site",
+    "description": "Config-driven static salon website with accordion team section, review carousel, and WhatsApp booking.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "github": "https://www.linkedin.com/in/sajana-senanayake/",
+    "demo": null,
+    "year": "2024"
+  }
+]

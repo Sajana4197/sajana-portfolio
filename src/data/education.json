@@ -1,0 +1,20 @@
+[
+  {
+    "degree": "B.Sc. (Hons) in Electrical & Information Engineering",
+    "institution": "University of Ruhuna",
+    "faculty": "Faculty of Engineering",
+    "period": "2021 – Present",
+    "status": "Undergraduate",
+    "description": "Specializing in Telecommunications, Signal Processing, and Embedded Systems. Active in final-year research project on 5G resource allocation.",
+    "color": "#0078d4"
+  },
+  {
+    "degree": "Advanced Level (Physical Science)",
+    "institution": "D.S. Senanayake College",
+    "faculty": "Combined Maths, Physics, Chemistry",
+    "period": "2018 – 2020",
+    "status": "Completed",
+    "description": "Achieved strong results enabling entry into the Faculty of Engineering.",
+    "color": "#107c41"
+  }
+]
