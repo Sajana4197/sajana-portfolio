@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDesktopStore } from "../../store/desktopStore";
 import { ICON_DEFS } from "../desktop/Desktop";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const PINNED_APPS = [
   { id: "about", label: "About Me", icon: "👤" },
@@ -38,6 +39,9 @@ const RECENT = [
 ];
 
 export default function StartMenu() {
+  const { width } = useWindowSize();
+  const MENU_WIDTH = 640;
+  const leftPx = Math.round((width - MENU_WIDTH) / 2);
   const { openWindow, closeStartMenu } = useDesktopStore();
   const [search, setSearch] = useState("");
   const [hoverId, setHoverId] = useState(null);
@@ -66,10 +70,10 @@ export default function StartMenu() {
     <motion.div
       className="fixed z-[9800]"
       style={{
+        position: "fixed",
         bottom: 56,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: 640,
+        left: leftPx,
+        width: MENU_WIDTH,
         background: "rgba(18,18,30,0.97)",
         backdropFilter: "blur(32px) saturate(180%)",
         WebkitBackdropFilter: "blur(32px) saturate(180%)",
