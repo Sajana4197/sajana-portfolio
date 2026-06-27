@@ -7,21 +7,22 @@ import {
   StatusBar,
   SectionHeader,
 } from "./_shared.jsx";
+import emailjs from "@emailjs/browser";
 
 const CONTACT_LINKS = [
   {
     label: "Email",
-    value: "sajana@example.com",
+    value: "sjnsenanayake@gmail.com",
     icon: "📧",
     color: "#0078d4",
-    href: "mailto:sajana@example.com",
+    href: "mailto:sjnsenanayake@gmail.com",
   },
   {
     label: "WhatsApp",
-    value: "+94 XX XXX XXXX",
+    value: "+94 76 6671613",
     icon: "💬",
     color: "#25d366",
-    href: "https://wa.me/94XXXXXXXXX",
+    href: "https://wa.me/94766671613",
   },
   {
     label: "GitHub",
@@ -32,10 +33,10 @@ const CONTACT_LINKS = [
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/sajana",
+    value: "linkedin.com/in/sajana-senanayake",
     icon: "🔗",
     color: "#0077b5",
-    href: "https://linkedin.com/in/sajana",
+    href: "https://linkedin.com/in/sajana-senanayake",
   },
   {
     label: "Location",
@@ -65,12 +66,31 @@ export default function ContactWindow() {
   function handleSubmit() {
     if (!formData.name || !formData.email || !formData.message) return;
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      setSent(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSent(false), 4000);
-    }, 1800);
+
+    emailjs
+      .send(
+        "service_asa1qk5", // ← from EmailJS dashboard
+        "template_c02zkn1", // ← from EmailJS dashboard
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || "Portfolio Contact",
+          message: formData.message,
+          to_email: "sjnsenanayake@gmail.com", // ← your real email
+        },
+        "Pb37hVnDnuLAc44vd", // ← from EmailJS dashboard
+      )
+      .then(() => {
+        setSending(false);
+        setSent(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSent(false), 4000);
+      })
+      .catch((err) => {
+        console.error("EmailJS error:", err);
+        setSending(false);
+        alert("Failed to send. Please try WhatsApp instead.");
+      });
   }
 
   return (

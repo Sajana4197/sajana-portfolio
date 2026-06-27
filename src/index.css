@@ -83,3 +83,51 @@ body,
   height: 12px;
   cursor: nwse-resize;
 }
+
+/* Mobile viewport fix */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body,
+  #root {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Prevent pull-to-refresh on mobile */
+body {
+  overscroll-behavior: none;
+}
+
+/* Mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Android app content — hide desktop-only elements */
+.android-app-content > div {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide sidebars in android view */
+@media (max-width: 767px) {
+  .android-app-content [style*="width: 200px"],
+  .android-app-content [style*="width: 190px"],
+  .android-app-content [style*="width: 180px"],
+  .android-app-content [style*="width: 160px"] {
+    display: none !important;
+  }
+
+  /* Make content fill full width */
+  .android-app-content .flex-1 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Scrollable tabs */
+  .android-app-content [class*="flex items-center gap-1 px-3"] {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}

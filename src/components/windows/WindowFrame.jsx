@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDesktopStore } from "../../store/desktopStore";
+import { AppIcon } from "../icons/AppIcons";
 
 export default function WindowFrame({ win }) {
   const {
@@ -160,7 +161,7 @@ export default function WindowFrame({ win }) {
       >
         {/* Left — icon + title */}
         <div className="flex items-center gap-2">
-          <span style={{ fontSize: 15 }}>{win.icon}</span>
+          <AppIcon id={win.icon} size={14} rounded={false} />
           <span
             style={{
               fontSize: 13,

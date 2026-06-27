@@ -6,6 +6,7 @@ import RightClickMenu from "./RightClickMenu";
 import Taskbar from "../taskbar/Taskbar";
 import WindowFrame from "../windows/WindowFrame";
 import StartMenu from "../taskbar/StartMenu";
+import { AppIcon } from "../icons/AppIcons";
 
 /* ── icon registry ── */
 import AboutWindow from "../windows/AboutWindow";
@@ -15,50 +16,68 @@ import ExperienceWindow from "../windows/ExperienceWindow";
 import EducationWindow from "../windows/EducationWindow";
 import ResumeWindow from "../windows/ResumeWindow";
 import ContactWindow from "../windows/ContactWindow";
-import WhatsAppWindow from "../windows/WhatsAppWindow";
-import EmailWindow from "../windows/EmailWindow";
 import CertificatesWindow from "../windows/CertificatesWindow";
 
 export const ICON_DEFS = [
-  { id: "about", label: "About Me", icon: "👤", component: AboutWindow },
-  { id: "projects", label: "Projects", icon: "📁", component: ProjectsWindow },
-  { id: "skills", label: "Skills", icon: "⚙️", component: SkillsWindow },
+  { id: "about", label: "About Me", icon: "about", component: AboutWindow },
+  {
+    id: "projects",
+    label: "Projects",
+    icon: "projects",
+    component: ProjectsWindow,
+  },
+  { id: "skills", label: "Skills", icon: "skills", component: SkillsWindow },
   {
     id: "experience",
     label: "Experience",
-    icon: "💼",
+    icon: "experience",
     component: ExperienceWindow,
   },
   {
     id: "education",
     label: "Education",
-    icon: "🎓",
+    icon: "education",
     component: EducationWindow,
   },
-  { id: "resume", label: "Resume", icon: "📄", component: ResumeWindow },
+  { id: "resume", label: "Resume", icon: "resume", component: ResumeWindow },
   {
     id: "certificates",
     label: "Certificates",
-    icon: "🏆",
+    icon: "certificates",
     component: CertificatesWindow,
   },
-  { id: "contact", label: "Contact", icon: "📬", component: ContactWindow },
-  { id: "email", label: "Email", icon: "📧", component: EmailWindow },
-  { id: "whatsapp", label: "WhatsApp", icon: "💬", component: WhatsAppWindow },
+  {
+    id: "contact",
+    label: "Contact",
+    icon: "contact",
+    component: ContactWindow,
+  },
+  {
+    id: "email",
+    label: "Email",
+    icon: "email",
+    href: "mailto:sjnsenanayake@gmail.com",
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    icon: "whatsapp",
+    href: "https://wa.me/94766671613?text=Hi%20Sajana!",
+  },
   {
     id: "github",
     label: "GitHub",
-    icon: "🐙",
+    icon: "github",
     href: "https://github.com/Sajana4197",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
-    icon: "🔗",
+    icon: "linkedin",
     href: "https://linkedin.com/in/sajana-senanayake",
   },
-  { id: "thispc", label: "This PC", icon: "🖥️", component: AboutWindow },
-  { id: "recycle", label: "Recycle Bin", icon: "🗑️", component: null },
+  { id: "thispc", label: "This PC", icon: "thispc", component: AboutWindow },
+  { id: "recycle", label: "Recycle Bin", icon: "recycle", component: null },
 ];
 
 export default function Desktop() {

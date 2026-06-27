@@ -5,7 +5,6 @@ export function useWindowSize() {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
   useEffect(() => {
     function handle() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
@@ -13,6 +12,5 @@ export function useWindowSize() {
     window.addEventListener("resize", handle);
     return () => window.removeEventListener("resize", handle);
   }, []);
-
   return size;
 }

@@ -3,29 +3,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useDesktopStore } from "../../store/desktopStore";
 import { ICON_DEFS } from "../desktop/Desktop";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { AppIcon } from "../icons/AppIcons";
 
 const PINNED_APPS = [
-  { id: "about", label: "About Me", icon: "👤" },
-  { id: "projects", label: "Projects", icon: "📁" },
-  { id: "skills", label: "Skills", icon: "⚙️" },
-  { id: "experience", label: "Experience", icon: "💼" },
-  { id: "education", label: "Education", icon: "🎓" },
-  { id: "resume", label: "Resume", icon: "📄" },
-  { id: "certificates", label: "Certificates", icon: "🏆" },
-  { id: "contact", label: "Contact", icon: "📬" },
-  { id: "email", label: "Email", icon: "📧" },
-  { id: "whatsapp", label: "WhatsApp", icon: "💬" },
+  { id: "about", label: "About Me", icon: "about" },
+  { id: "projects", label: "Projects", icon: "projects" },
+  { id: "skills", label: "Skills", icon: "skills" },
+  { id: "experience", label: "Experience", icon: "experience" },
+  { id: "education", label: "Education", icon: "education" },
+  { id: "resume", label: "Resume", icon: "resume" },
+  { id: "certificates", label: "Certificates", icon: "certificates" },
+  { id: "contact", label: "Contact", icon: "contact" },
+  {
+    id: "email",
+    label: "Email",
+    icon: "email",
+    href: "mailto:sjnsenanayake@gmail.com",
+  },
   {
     id: "github",
     label: "GitHub",
-    icon: "🐙",
-    href: "https://github.com/sajana",
+    icon: "github",
+    href: "https://github.com/Sajana4197",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
-    icon: "🔗",
+    icon: "linkedin",
     href: "https://linkedin.com/in/sajana",
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    icon: "whatsapp",
+    href: "https://wa.me/94XXXXXXXXX",
   },
 ];
 
@@ -329,7 +340,7 @@ function PinnedApp({ item, isHov, onHov, onLaunch }) {
         transition: "background 0.12s",
       }}
     >
-      <span style={{ fontSize: 26 }}>{item.icon}</span>
+      <AppIcon id={item.icon} size={22} />
       <span
         style={{
           fontSize: 11,

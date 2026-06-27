@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { AppIcon } from "../icons/AppIcons";
 
 export default function DesktopIcon({ def, index, onOpen, onRightClick }) {
   const [selected, setSelected] = useState(false);
@@ -104,21 +105,7 @@ export default function DesktopIcon({ def, index, onOpen, onRightClick }) {
       whileTap={{ scale: 0.96 }}
     >
       {/* Icon */}
-      <div
-        className="w-12 h-12 flex items-center justify-center rounded-xl text-3xl"
-        style={{
-          background: selected
-            ? "rgba(0,120,212,0.3)"
-            : "rgba(255,255,255,0.05)",
-          boxShadow: selected
-            ? "0 0 16px rgba(0,120,212,0.4)"
-            : "0 2px 8px rgba(0,0,0,0.4)",
-          backdropFilter: "blur(8px)",
-          transition: "all 0.15s",
-        }}
-      >
-        {def.icon}
-      </div>
+      <AppIcon id={def.icon} size={28} />
 
       {/* Label */}
       <span

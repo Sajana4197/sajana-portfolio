@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const STATS = [
   { label: "Projects Delivered", value: "10+" },
@@ -83,6 +84,8 @@ const SIDEBAR_ITEMS = [
 ];
 
 export default function AboutWindow() {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   const [activeNav, setActiveNav] = useState("home");
   const [sidebarExpanded, setSidebarExpanded] = useState({
     "Quick access": true,
@@ -199,85 +202,97 @@ export default function AboutWindow() {
 
       {/* ── Main layout: sidebar + content ── */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <div
-          className="flex flex-col gap-1 py-2 overflow-y-auto shrink-0"
-          style={{
-            width: 200,
-            borderRight: "1px solid rgba(255,255,255,0.07)",
-            background: "rgba(0,0,0,0.15)",
-          }}
-        >
-          {SIDEBAR_ITEMS.map((group) => (
-            <div key={group.label}>
-              <button
-                className="flex items-center gap-2 w-full px-3 py-1.5 text-left"
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: 12,
-                  color: "#8888aa",
-                  fontWeight: 600,
-                  letterSpacing: "0.04em",
-                }}
-                onClick={() =>
-                  setSidebarExpanded((s) => ({
-                    ...s,
-                    [group.label]: !s[group.label],
-                  }))
-                }
-              >
-                <span
-                  style={{
-                    fontSize: 10,
-                    transition: "transform 0.15s",
-                    transform: sidebarExpanded[group.label]
-                      ? "rotate(90deg)"
-                      : "rotate(0deg)",
-                  }}
-                >
-                  ▶
-                </span>
-                <span>{group.icon}</span>
-                <span>{group.label}</span>
-              </button>
-              <AnimatePresence>
-                {sidebarExpanded[group.label] && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.18 }}
-                    style={{ overflow: "hidden" }}
+        {/* Sidebar — hidden on mobile */}
+        {!isMobile && (
+          <div
+            className="flex flex-col gap-1 py-2 overflow-y-auto shrink-0"
+            style={{
+              width: 200,
+              borderRight: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(0,0,0,0.15)",
+            }}
+          >
+            {/* Sidebar */}
+            <div
+              className="flex flex-col gap-1 py-2 overflow-y-auto shrink-0"
+              style={{
+                width: 200,
+                borderRight: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(0,0,0,0.15)",
+              }}
+            >
+              {SIDEBAR_ITEMS.map((group) => (
+                <div key={group.label}>
+                  <button
+                    className="flex items-center gap-2 w-full px-3 py-1.5 text-left"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: 12,
+                      color: "#8888aa",
+                      fontWeight: 600,
+                      letterSpacing: "0.04em",
+                    }}
+                    onClick={() =>
+                      setSidebarExpanded((s) => ({
+                        ...s,
+                        [group.label]: !s[group.label],
+                      }))
+                    }
                   >
-                    {group.children.map((child) => (
-                      <div
-                        key={child}
-                        className="flex items-center gap-2 px-6 py-1 cursor-pointer"
-                        style={{
-                          fontSize: 13,
-                          color: "#aaa",
-                          transition: "background 0.1s",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.background =
-                            "rgba(255,255,255,0.06)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.background = "transparent")
-                        }
+                    <span
+                      style={{
+                        fontSize: 10,
+                        transition: "transform 0.15s",
+                        transform: sidebarExpanded[group.label]
+                          ? "rotate(90deg)"
+                          : "rotate(0deg)",
+                      }}
+                    >
+                      ▶
+                    </span>
+                    <span>{group.icon}</span>
+                    <span>{group.label}</span>
+                  </button>
+                  <AnimatePresence>
+                    {sidebarExpanded[group.label] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.18 }}
+                        style={{ overflow: "hidden" }}
                       >
-                        <span style={{ fontSize: 11 }}>📄</span>
-                        {child}
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                        {group.children.map((child) => (
+                          <div
+                            key={child}
+                            className="flex items-center gap-2 px-6 py-1 cursor-pointer"
+                            style={{
+                              fontSize: 13,
+                              color: "#aaa",
+                              transition: "background 0.1s",
+                            }}
+                            onMouseEnter={(e) =>
+                              (e.currentTarget.style.background =
+                                "rgba(255,255,255,0.06)")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.currentTarget.style.background = "transparent")
+                            }
+                          >
+                            <span style={{ fontSize: 11 }}>📄</span>
+                            {child}
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* ── Content pane ── */}
         <div className="flex-1 overflow-y-auto">
