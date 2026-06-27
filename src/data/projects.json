@@ -5,7 +5,7 @@
     "title": "SDN Campus Network Design",
     "description": "Designed a Software Defined Networking architecture for a university campus with centralized control plane, VLANs, and QoS policies.",
     "tech": ["Cisco Packet Tracer", "OpenFlow", "Python", "GNS3"],
-    "github": "https://github.com/sajana",
+    "github": "https://github.com/Sajana4197",
     "demo": null,
     "year": "2024"
   },
@@ -15,7 +15,7 @@
     "title": "RightClick IT Services Site",
     "description": "Full React/Vite website for an IT services company with GSAP animations, Lenis smooth scrolling, and a chat widget.",
     "tech": ["React", "Vite", "GSAP", "Tailwind CSS"],
-    "github": "https://github.com/sajana",
+    "github": "https://github.com/Sajana4197",
     "demo": "https://rightclick.lk",
     "year": "2024"
   },
@@ -25,7 +25,7 @@
     "title": "Ember & Oak Restaurant System",
     "description": "Full-stack restaurant management with reservation wizard, overbooking prevention, QR codes, and admin dashboard.",
     "tech": ["React", "Supabase", "Tailwind CSS", "Resend"],
-    "github": "https://github.com/sajana",
+    "github": "https://github.com/Sajana4197",
     "demo": null,
     "year": "2024"
   },
@@ -35,7 +35,7 @@
     "title": "ClientFlow Desktop App",
     "description": "Electron desktop CRM with client management, recurring payments, reports, and futuristic UI.",
     "tech": ["Electron", "React", "SQLite", "Tailwind CSS"],
-    "github": "https://github.com/sajana",
+    "github": "https://github.com/Sajana4197",
     "demo": null,
     "year": "2023"
   },
