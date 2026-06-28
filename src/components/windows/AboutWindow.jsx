@@ -3,70 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
 const STATS = [
-  { label: "Projects Delivered", value: "10+" },
-  { label: "Years Coding", value: "4+" },
-  { label: "Technologies", value: "20+" },
-  { label: "GPA", value: "3.5" },
-];
-
-const TIMELINE = [
-  {
-    year: "2021",
-    title: "Started Engineering Degree",
-    sub: "University of Ruhuna — Faculty of Engineering",
-    icon: "🎓",
-    color: "#0078d4",
-  },
-  {
-    year: "2022",
-    title: "First Web Dev Project",
-    sub: "Built first client website using HTML/CSS/JS",
-    icon: "🌐",
-    color: "#107c41",
-  },
-  {
-    year: "2023",
-    title: "Freelance Career Began",
-    sub: "Launched freelance web development — 5+ clients",
-    icon: "💼",
-    color: "#8764b8",
-  },
-  {
-    year: "2023",
-    title: "Built ClientFlow Desktop App",
-    sub: "Electron + React CRM for managing freelance business",
-    icon: "🖥️",
-    color: "#c43e1c",
-  },
-  {
-    year: "2024",
-    title: "ZTE Lanka Internship",
-    sub: "4G/5G network deployment & RF optimization",
-    icon: "📡",
-    color: "#0078d4",
-  },
-  {
-    year: "2024",
-    title: "Full-Stack React Projects",
-    sub: "Ember & Oak, RightClick IT, Lumière Beauty",
-    icon: "⚛️",
-    color: "#107c41",
-  },
-  {
-    year: "2025",
-    title: "Final Year Research",
-    sub: "5G resource allocation research project",
-    icon: "🔬",
-    color: "#e3a21a",
-  },
+  { label: "Industrial Trainings", value: "2" },
+  { label: "Major Projects", value: "4+" },
+  { label: "Graduates", value: "2026" },
+  { label: "GPA", value: "3.01" },
 ];
 
 const NAV_ITEMS = [
   { id: "home", label: "Home", icon: "🏠" },
   { id: "about", label: "About", icon: "👤" },
-  { id: "timeline", label: "Timeline", icon: "📅" },
   { id: "stats", label: "Stats", icon: "📊" },
-  { id: "experience", label: "Experience", icon: "💼" },
 ];
 
 const SIDEBAR_ITEMS = [
@@ -309,9 +255,7 @@ export default function AboutWindow() {
             >
               {activeNav === "home" && <HomePane setActiveNav={setActiveNav} />}
               {activeNav === "about" && <AboutPane />}
-              {activeNav === "timeline" && <TimelinePane />}
               {activeNav === "stats" && <StatsPane />}
-              {activeNav === "experience" && <ExperiencePane />}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -377,75 +321,108 @@ function HomePane({ setActiveNav }) {
           <div className="flex items-center gap-1.5 mt-2 justify-center">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span style={{ fontSize: 11, color: "#4ade80" }}>
-              Available for hire
+              Open to Opportunities
             </span>
           </div>
         </motion.div>
-
-        {/* Info */}
+        {/* Info */}{" "}
         <div className="flex-1">
+          {" "}
           <motion.div
             initial={{ opacity: 0, x: isMobile ? 0 : -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15 }}
           >
+            {" "}
             <h1
               style={{
-                fontSize: isMobile ? 20 : 28,
+                fontSize: isMobile ? 20 : 30,
                 fontWeight: 700,
                 color: "#fff",
-                marginBottom: 4,
+                marginBottom: 6,
                 lineHeight: 1.2,
               }}
             >
-              Sajana Senanayake
-            </h1>
+              {" "}
+              Sajana Senanayake{" "}
+            </h1>{" "}
             <p
               style={{
-                fontSize: isMobile ? 12 : 15,
+                fontSize: isMobile ? 12 : 16,
                 color: "#0078d4",
-                fontWeight: 500,
-                marginBottom: 6,
+                fontWeight: 600,
+                marginBottom: 8,
               }}
             >
-              Electrical & Information Engineering Undergraduate
-            </p>
-            <p style={{ fontSize: 11, color: "#8888aa", marginBottom: 10 }}>
-              📍 Sri Lanka · 🎓 University of Ruhuna
-            </p>
+              {" "}
+              Graduate Electrical & Information Engineer{" "}
+            </p>{" "}
+            <p style={{ fontSize: 12, color: "#8888aa", marginBottom: 14 }}>
+              {" "}
+              📍 Sri Lanka • 🎓 University of Ruhuna{" "}
+            </p>{" "}
             <p
               style={{
-                fontSize: isMobile ? 12 : 14,
+                fontSize: isMobile ? 13 : 15,
                 color: "#bbb",
-                lineHeight: 1.8,
-                maxWidth: 480,
+                lineHeight: 1.9,
+                maxWidth: 560,
               }}
             >
-              I build things that work beautifully — from
-              <span style={{ color: "#0078d4" }}> 5G networks </span>
-              to
-              <span style={{ color: "#107c41" }}> full-stack web apps</span>.
-            </p>
-          </motion.div>
-
-          {/* CTA buttons */}
+              {" "}
+              Passionate about{" "}
+              <span style={{ color: "#c43e1c", fontWeight: 600 }}>
+                {" "}
+                Telecommunications{" "}
+              </span>
+              ,{" "}
+              <span style={{ color: "#0078d4", fontWeight: 600 }}>
+                {" "}
+                Network Engineering{" "}
+              </span>{" "}
+              and{" "}
+              <span style={{ color: "#107c41", fontWeight: 600 }}>
+                {" "}
+                Network Operations.{" "}
+              </span>{" "}
+              Experienced in TCP/IP networking, routing & switching, VLANs,
+              network infrastructure, transmission systems, and performance
+              monitoring, with industrial training at ZTE Lanka and Sri Lanka
+              Rupavahini Corporation.{" "}
+            </p>{" "}
+          </motion.div>{" "}
+          {/* CTA Buttons */}{" "}
           <motion.div
-            className={`flex ${isMobile ? "justify-center" : ""} items-center gap-3 mt-4`}
+            className={`flex ${isMobile ? "justify-center" : ""} items-center gap-3 mt-5`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <CTAButton primary onClick={() => setActiveNav("timeline")}>
-              My Journey →
-            </CTAButton>
+            {" "}
+            <CTAButton
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/sajana-senanayake/",
+                  "_blank",
+                )
+              }
+            >
+              {" "}
+              LinkedIn{" "}
+            </CTAButton>{" "}
             <CTAButton
               onClick={() =>
                 window.open("https://github.com/Sajana4197", "_blank")
               }
             >
-              GitHub
-            </CTAButton>
-          </motion.div>
+              {" "}
+              GitHub{" "}
+            </CTAButton>{" "}
+            <CTAButton onClick={() => setActiveNav("about")} primary>
+              {" "}
+              Learn More →{""}
+            </CTAButton>{" "}
+          </motion.div>{" "}
         </div>
       </div>
 
@@ -491,204 +468,132 @@ function HomePane({ setActiveNav }) {
           </motion.div>
         ))}
       </motion.div>
-
-      {/* Quick links — 2 cols on mobile */}
-      <div>
-        <p
-          style={{
-            fontSize: 11,
-            color: "#8888aa",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            marginBottom: 10,
-          }}
-        >
-          Quick Access
-        </p>
-        <div
-          className={`grid ${isMobile ? "grid-cols-2" : "grid-cols-3"} gap-2`}
-        >
-          {[
-            { label: "My Projects", icon: "📁", color: "#e3a21a", nav: null },
-            { label: "Skills", icon: "⚙️", color: "#0078d4", nav: null },
-            {
-              label: "Experience",
-              icon: "💼",
-              color: "#107c41",
-              nav: "experience",
-            },
-            { label: "Education", icon: "🎓", color: "#8764b8", nav: null },
-            { label: "Resume", icon: "📄", color: "#c43e1c", nav: null },
-            { label: "Contact Me", icon: "📬", color: "#0078d4", nav: null },
-          ].map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 + i * 0.05 }}
-              className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                transition: "all 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = item.color + "15";
-                e.currentTarget.style.borderColor = item.color + "44";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
-              }}
-              onClick={() => item.nav && setActiveNav(item.nav)}
-            >
-              <span style={{ fontSize: 18 }}>{item.icon}</span>
-              <span style={{ fontSize: 12, color: "#e8e8f0" }}>
-                {item.label}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
+
 function AboutPane() {
-  return (
-    <div className="p-8 max-w-2xl">
-      <SectionHeader icon="👤" title="About Me" />
-      <div
-        className="space-y-5"
-        style={{ fontSize: 14, color: "#bbb", lineHeight: 1.9 }}
-      >
-        <p>
-          I'm{" "}
-          <span style={{ color: "#fff", fontWeight: 600 }}>
-            Sajana Senanayake
-          </span>
-          , an Electrical & Information Engineering undergraduate at the
-          University of Ruhuna, Sri Lanka. My academic path sits at the
-          crossroads of hardware, telecom, and software — and I've spent the
-          last few years building bridges between all three.
-        </p>
-        <p>
-          On the <span style={{ color: "#0078d4" }}>engineering side</span>, I
-          work with signal processing, RF systems, and network infrastructure.
-          I've interned at ZTE Lanka working on live 4G/5G deployment and have
-          done university research on 5G resource allocation algorithms.
-        </p>
-        <p>
-          On the <span style={{ color: "#107c41" }}>software side</span>, I'm a
-          full-stack developer specializing in React, Vite, Tailwind CSS, and
-          Supabase. I've delivered 10+ production projects — restaurant systems,
-          salon sites, IT company sites, and a full Electron desktop CRM app.
-        </p>
-        <p>
-          On the <span style={{ color: "#8764b8" }}>design side</span>, I care
-          deeply about premium UI/UX. Every pixel matters. I build interfaces
-          that feel as good as they look — smooth animations, glassmorphism,
-          thoughtful micro-interactions.
-        </p>
-        <p>
-          Outside of work: I tinker, I build, and I chase that perfect
-          intersection of engineering precision and creative design. This
-          portfolio is one of those projects — a full Windows 11 OS experience,
-          built entirely in React.
-        </p>
-      </div>
+  const info = [
+    { label: "Full Name", value: "Sajana Senanayake" },
+    { label: "Degree", value: "B.Sc. Electrical & Information Engineering" },
+    { label: "University", value: "University of Ruhuna" },
+    { label: "Status", value: "Graduate" },
+    { label: "Available", value: "Open to Opportunities" },
+  ];
 
-      <div className="mt-8 grid grid-cols-2 gap-4">
-        {[
-          { label: "Full Name", value: "Sajana Senanayake" },
-          { label: "Location", value: "Sri Lanka 🇱🇰" },
-          { label: "Degree", value: "B.Sc. Electrical & Information Eng." },
-          { label: "University", value: "University of Ruhuna" },
-          { label: "Status", value: "Undergraduate (Final Year)" },
-          { label: "Available", value: "Yes — open to opportunities" },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="flex flex-col gap-1 p-3 rounded-lg"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.07)",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 11,
-                color: "#8888aa",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {item.label}
-            </span>
-            <span style={{ fontSize: 13, color: "#e8e8f0" }}>{item.value}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function TimelinePane() {
   return (
     <div className="p-8">
-      <SectionHeader icon="📅" title="My Journey" />
-      <div className="relative">
-        {/* Vertical line */}
+      <SectionHeader icon="👤" title="About Me" />
+
+      <div className="grid lg:grid-cols-[1fr_320px] gap-10 items-start">
+        {/* LEFT SIDE */}
         <div
-          className="absolute left-6 top-0 bottom-0 w-px"
+          className="space-y-5"
           style={{
-            background: "linear-gradient(to bottom, #0078d4, transparent)",
+            fontSize: 14,
+            color: "#bbb",
+            lineHeight: 1.9,
           }}
-        />
+        >
+          <p>
+            I'm{" "}
+            <span style={{ color: "#fff", fontWeight: 600 }}>
+              Sajana Senanayake
+            </span>
+            , a Graduate Electrical & Information Engineer from the University
+            of Ruhuna, Sri Lanka, with a strong interest in
+            <span style={{ color: "#00bfff" }}>
+              {" "}
+              Telecommunications and Network Engineering
+            </span>
+            . I enjoy designing, optimizing and supporting modern communication
+            networks while applying engineering principles to solve real-world
+            challenges.
+          </p>
 
-        <div className="space-y-1">
-          {TIMELINE.map((item, i) => (
-            <motion.div
-              key={i}
-              className="relative flex gap-6 pb-8"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.07 }}
+          <p>
+            My industrial training at{" "}
+            <span style={{ color: "#00bfff" }}>ZTE Lanka (Pvt) Ltd</span>{" "}
+            provided hands-on experience as a Trainee Site Engineer on Mobitel
+            projects, gaining exposure to telecommunications infrastructure,
+            mobile network deployment, transmission systems and field
+            engineering. I also completed industrial training at{" "}
+            <span style={{ color: "#00bfff" }}>
+              Sri Lanka Rupavahini Corporation
+            </span>
+            , where I worked with broadcast, networking and IT infrastructure
+            systems.
+          </p>
+
+          <p>
+            My technical expertise includes
+            <span style={{ color: "lightgreen" }}>
+              {" "}
+              TCP/IP Networking, IPv4 Addressing, Routing & Switching, VLANs,
+              Network Performance Monitoring, QoS/QoE Concepts and Network
+              Security Fundamentals.
+            </span>{" "}
+            I continue expanding these skills through Cisco Networking Academy
+            certifications, network simulations and practical engineering
+            projects.
+          </p>
+
+          <p>
+            Alongside networking, I develop software using
+            <span style={{ color: "#ff1493" }}>
+              {" "}
+              Python, C, C++, JavaScript and the MERN Stack.
+            </span>{" "}
+            My projects include a privacy-preserving hybrid face recognition
+            system, scalable campus network design and full-stack web
+            applications.
+          </p>
+
+          <p>
+            My goal is to build a career in
+            <span style={{ color: "#00bfff" }}>
+              {" "}
+              Telecommunications, Network Engineering and Network Operations
+            </span>
+            , contributing to reliable, secure and scalable communication
+            networks.
+          </p>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="space-y-4">
+          {info.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-xl p-4"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                backdropFilter: "blur(12px)",
+              }}
             >
-              {/* Dot */}
-              <div className="shrink-0 w-12 flex items-start justify-center pt-1">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-lg z-10"
-                  style={{
-                    background: item.color + "22",
-                    border: `1.5px solid ${item.color}55`,
-                  }}
-                >
-                  {item.icon}
-                </div>
+              <div
+                style={{
+                  fontSize: 11,
+                  color: "#8888aa",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: 6,
+                }}
+              >
+                {item.label}
               </div>
 
-              {/* Content */}
-              <div className="flex-1 pt-1">
-                <div className="flex items-center gap-3 mb-1">
-                  <span
-                    className="px-2 py-0.5 rounded text-xs font-mono"
-                    style={{
-                      background: item.color + "22",
-                      color: item.color,
-                      border: `1px solid ${item.color}44`,
-                    }}
-                  >
-                    {item.year}
-                  </span>
-                  <span
-                    style={{ fontSize: 14, fontWeight: 600, color: "#e8e8f0" }}
-                  >
-                    {item.title}
-                  </span>
-                </div>
-                <p style={{ fontSize: 13, color: "#8888aa" }}>{item.sub}</p>
+              <div
+                style={{
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: "#f5f5f7",
+                }}
+              >
+                {item.value}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -698,12 +603,36 @@ function TimelinePane() {
 
 function StatsPane() {
   const bars = [
-    { label: "React / Frontend", pct: 92, color: "#0078d4" },
-    { label: "UI/UX Design", pct: 85, color: "#8764b8" },
-    { label: "Network Engineering", pct: 80, color: "#c43e1c" },
-    { label: "Backend / Supabase", pct: 78, color: "#107c41" },
-    { label: "Python / MATLAB", pct: 75, color: "#e3a21a" },
-    { label: "Telecom / 5G", pct: 72, color: "#0078d4" },
+    {
+      label: "Telecommunications & Networking",
+      pct: 90,
+      color: "#c43e1c",
+    },
+    {
+      label: "Engineering Tools",
+      pct: 82,
+      color: "#e3a21a",
+    },
+    {
+      label: "Frontend Development",
+      pct: 83,
+      color: "#0078d4",
+    },
+    {
+      label: "Backend Development",
+      pct: 78,
+      color: "#107c41",
+    },
+    {
+      label: "Programming (Python / C / C++)",
+      pct: 80,
+      color: "#8764b8",
+    },
+    {
+      label: "UI/UX Design",
+      pct: 68,
+      color: "#6b5cff",
+    },
   ];
 
   return (
@@ -768,107 +697,6 @@ function StatsPane() {
           </motion.div>
         ))}
       </div>
-    </div>
-  );
-}
-
-function ExperiencePane() {
-  return (
-    <div className="p-8 space-y-6 max-w-2xl">
-      <SectionHeader icon="💼" title="Experience" />
-      {[
-        {
-          company: "ZTE Lanka",
-          role: "Network Engineer Intern",
-          period: "2024",
-          type: "Internship",
-          color: "#c43e1c",
-          icon: "📡",
-          points: [
-            "Assisted in 4G/5G NR site integration and commissioning",
-            "Performed drive tests and RF optimization across Colombo",
-            "Worked with ZTE ZXMP transport and BBU equipment",
-            "Prepared network audit and performance reports",
-          ],
-        },
-        {
-          company: "Freelance",
-          role: "Full-Stack Web Developer",
-          period: "2023 – Present",
-          type: "Self-employed",
-          color: "#0078d4",
-          icon: "💻",
-          points: [
-            "Delivered 10+ production websites for Sri Lankan SMEs",
-            "Built React/Vite/Tailwind/Supabase full-stack apps",
-            "Designed reusable config-driven static templates",
-            "Created ClientFlow — full Electron + SQLite desktop CRM",
-          ],
-        },
-      ].map((exp, i) => (
-        <motion.div
-          key={exp.company}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.12 }}
-          className="rounded-xl p-5"
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            border: `1px solid ${exp.color}33`,
-          }}
-        >
-          <div className="flex items-start gap-4">
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
-              style={{
-                background: exp.color + "22",
-                border: `1.5px solid ${exp.color}44`,
-              }}
-            >
-              {exp.icon}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-1">
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "#fff" }}>
-                  {exp.company}
-                </h3>
-                <span
-                  className="px-2 py-0.5 rounded text-xs"
-                  style={{
-                    background: exp.color + "22",
-                    color: exp.color,
-                    border: `1px solid ${exp.color}44`,
-                  }}
-                >
-                  {exp.period}
-                </span>
-              </div>
-              <p
-                style={{
-                  fontSize: 13,
-                  color: exp.color,
-                  marginBottom: 12,
-                  fontWeight: 500,
-                }}
-              >
-                {exp.role}
-              </p>
-              <ul className="space-y-1.5">
-                {exp.points.map((pt, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-2"
-                    style={{ fontSize: 13, color: "#aaa" }}
-                  >
-                    <span style={{ color: exp.color, marginTop: 1 }}>›</span>
-                    {pt}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-      ))}
     </div>
   );
 }

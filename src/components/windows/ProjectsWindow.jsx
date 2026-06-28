@@ -16,14 +16,14 @@ const CATEGORIES = [
     icon: "🌐",
     color: "#0078d4",
   },
-  { id: "UI/UX", label: "UI/UX Design", icon: "🎨", color: "#8764b8" },
+  // { id: "UI/UX", label: "UI/UX Design", icon: "🎨", color: "#8764b8" },
   {
-    id: "University Projects",
-    label: "University Projects",
+    id: "Final Year Project",
+    label: "Final Year Project",
     icon: "🎓",
     color: "#107c41",
   },
-  { id: "Freelance", label: "Freelance", icon: "💼", color: "#e3a21a" },
+  // { id: "Freelance", label: "Freelance", icon: "💼", color: "#e3a21a" },
 ];
 
 const VIEW_MODES = ["grid", "list", "details"];

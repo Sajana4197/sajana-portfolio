@@ -13,12 +13,53 @@ import {
   MetaRow,
   ViewToggle,
 } from "./_shared.jsx";
+import { useDesktopStore } from "../../store/desktopStore";
 
-const TABS = ["Timeline", "Cards", "Details"];
+const TABS = ["Timeline", "Details"];
 
 export default function ExperienceWindow() {
+  const { openWindow } = useDesktopStore();
   const [activeTab, setActiveTab] = useState("Timeline");
   const [selected, setSelected] = useState(null);
+
+  function openServiceLetter(letter) {
+    openWindow(
+      `service-${letter.title}`,
+      letter.title,
+      () => (
+        <div
+          className="flex flex-col h-full"
+          style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
+        >
+          <div
+            className="flex items-center gap-2 px-3 py-2 shrink-0"
+            style={{
+              borderBottom: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(255,255,255,0.02)",
+            }}
+          >
+            <span style={{ fontSize: 13, color: "#8888aa" }}>📄</span>
+            <span style={{ fontSize: 13, color: "#0078d4" }}>
+              {letter.title}
+            </span>
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <iframe
+              src={letter.file}
+              title={letter.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+                background: "#fff",
+              }}
+            />
+          </div>
+        </div>
+      ),
+      "experience",
+    );
+  }
 
   return (
     <div
@@ -112,7 +153,7 @@ export default function ExperienceWindow() {
           <SidebarLabel>Stats</SidebarLabel>
           {[
             { label: "Positions", value: experienceData.length },
-            { label: "Years Exp.", value: "2+" },
+            { label: "Years Exp.", value: "6 months" },
             { label: "Projects", value: "10+" },
           ].map((s) => (
             <div key={s.label} className="flex justify-between px-3 py-1">
@@ -135,15 +176,12 @@ export default function ExperienceWindow() {
               transition={{ duration: 0.18 }}
             >
               {activeTab === "Timeline" && (
-                <TimelineView data={experienceData} />
-              )}
-              {activeTab === "Cards" && (
-                <CardsView
+                <TimelineView
                   data={experienceData}
-                  selected={selected}
-                  onSelect={setSelected}
+                  onOpenLetter={openServiceLetter}
                 />
               )}
+
               {activeTab === "Details" && (
                 <DetailsView
                   data={experienceData}
@@ -165,12 +203,11 @@ export default function ExperienceWindow() {
   );
 }
 
-function TimelineView({ data }) {
+function TimelineView({ data, onOpenLetter }) {
   return (
     <div className="max-w-xl">
       <SectionHeader icon="📅" title="Career Timeline" />
       <div className="relative pl-8">
-        {/* Vertical line */}
         <div
           className="absolute left-3 top-0 bottom-0 w-0.5"
           style={{
@@ -186,7 +223,6 @@ function TimelineView({ data }) {
             transition={{ delay: i * 0.12 }}
             className="relative mb-10"
           >
-            {/* Dot */}
             <div
               className="absolute -left-8 top-1 w-6 h-6 rounded-full flex items-center justify-center"
               style={{
@@ -198,7 +234,6 @@ function TimelineView({ data }) {
               💼
             </div>
 
-            {/* Card */}
             <div
               className="p-5 rounded-xl"
               style={{
@@ -233,6 +268,7 @@ function TimelineView({ data }) {
                   </span>
                 </div>
               </div>
+
               <p
                 style={{
                   fontSize: 13,
@@ -243,7 +279,8 @@ function TimelineView({ data }) {
               >
                 {exp.description}
               </p>
-              <div className="flex flex-wrap gap-1.5">
+
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {exp.achievements.map((a) => (
                   <span
                     key={a}
@@ -257,6 +294,99 @@ function TimelineView({ data }) {
                   </span>
                 ))}
               </div>
+
+              {/* ── Service Letters ── */}
+              {exp.serviceLetters && exp.serviceLetters.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className="h-px flex-1"
+                      style={{ background: "rgba(255,255,255,0.07)" }}
+                    />
+                    <span
+                      style={{
+                        fontSize: 11,
+                        color: "#8888aa",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.07em",
+                      }}
+                    >
+                      Service Letters
+                    </span>
+                    <div
+                      className="h-px flex-1"
+                      style={{ background: "rgba(255,255,255,0.07)" }}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {exp.serviceLetters.map((letter, j) => (
+                      <motion.div
+                        key={j}
+                        onClick={() => onOpenLetter(letter)}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          border: `1px solid ${exp.color}22`,
+                          transition: "all 0.15s",
+                        }}
+                        whileHover={{
+                          scale: 1.02,
+                          background: exp.color + "12",
+                          borderColor: exp.color + "44",
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center text-lg shrink-0"
+                          style={{
+                            background: exp.color + "22",
+                            border: `1px solid ${exp.color}33`,
+                          }}
+                        >
+                          {letter.icon}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p
+                            style={{
+                              fontSize: 12,
+                              fontWeight: 600,
+                              color: "#e8e8f0",
+                              lineHeight: 1.3,
+                            }}
+                          >
+                            {letter.title}
+                          </p>
+                          <p
+                            style={{
+                              fontSize: 11,
+                              color: "#8888aa",
+                              marginTop: 1,
+                            }}
+                          >
+                            {letter.date}
+                          </p>
+                        </div>
+                        <div className="flex flex-col items-center gap-1 shrink-0">
+                          <div
+                            className="w-6 h-6 rounded-full flex items-center justify-center"
+                            style={{
+                              background: "#107c4122",
+                              border: "1px solid #107c4144",
+                            }}
+                          >
+                            <span style={{ fontSize: 10, color: "#107c41" }}>
+                              ↗
+                            </span>
+                          </div>
+                          <span style={{ fontSize: 9, color: "#8888aa" }}>
+                            view
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
@@ -269,7 +399,8 @@ function TimelineView({ data }) {
           className="relative mb-4"
         >
           <div
-            className="absolute -left-8 top-1 w-6 h-6 rounded-full border-2 border-dashed flex items-center justify-center"
+            className="absolute -left-8 top-1 w-6 h-6 rounded-full border-2 border-dashed
+            flex items-center justify-center"
             style={{ borderColor: "#8888aa", fontSize: 12 }}
           >
             ✨
@@ -286,78 +417,6 @@ function TimelineView({ data }) {
             </p>
           </div>
         </motion.div>
-      </div>
-    </div>
-  );
-}
-
-function CardsView({ data, selected, onSelect }) {
-  return (
-    <div>
-      <SectionHeader icon="💼" title="Work Experience" />
-      <div
-        className="grid gap-4"
-        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}
-      >
-        {data.map((exp, i) => {
-          const isSel = selected?.company === exp.company;
-          return (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-              onClick={() => onSelect(isSel ? null : exp)}
-              className="p-5 rounded-2xl cursor-pointer"
-              style={{
-                background: isSel ? exp.color + "15" : "rgba(255,255,255,0.04)",
-                border: `1.5px solid ${isSel ? exp.color + "55" : "rgba(255,255,255,0.07)"}`,
-                transition: "all 0.18s",
-              }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
-                  style={{
-                    background: exp.color + "22",
-                    border: `1.5px solid ${exp.color}44`,
-                  }}
-                >
-                  💼
-                </div>
-                <div>
-                  <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>
-                    {exp.company}
-                  </h3>
-                  <p
-                    style={{ fontSize: 12, color: exp.color, fontWeight: 500 }}
-                  >
-                    {exp.role}
-                  </p>
-                  <p style={{ fontSize: 11, color: "#8888aa", marginTop: 2 }}>
-                    {exp.period} · {exp.type}
-                  </p>
-                </div>
-              </div>
-              <p style={{ fontSize: 12, color: "#aaa", lineHeight: 1.7 }}>
-                {exp.description}
-              </p>
-              <div className="mt-3 flex flex-wrap gap-1">
-                {exp.achievements.slice(0, 2).map((a) => (
-                  <span
-                    key={a}
-                    className="px-2 py-0.5 rounded text-xs"
-                    style={{ background: exp.color + "15", color: exp.color }}
-                  >
-                    {a.length > 30 ? a.slice(0, 30) + "…" : a}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
       </div>
     </div>
   );

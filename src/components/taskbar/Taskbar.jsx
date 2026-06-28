@@ -481,7 +481,7 @@ export default function Taskbar() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                 >
-                  <span>{win.icon}</span>
+                  <TaskbarIcon id={win.icon} size={18} />
                   <span
                     style={{
                       position: "absolute",

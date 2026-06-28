@@ -1,31 +1,48 @@
 [
+
   {
-    "company": "ZTE Lanka",
-    "role": "Network Engineer Intern",
-    "period": "2024",
-    "type": "Internship",
-    "location": "Colombo, Sri Lanka",
-    "description": "Worked on 4G/5G network deployment and optimization for Sri Lanka Telecom. Involved in site survey, RF planning, and network performance monitoring.",
+    "company": "ZTE Lanka (Pvt) Ltd",
+    "role": "Trainee Site Engineer (Mobitel Projects)",
+    "period": "October 2023 - January 2024",
+    "type": "Industrial Training",
+    "location": "Kandy, Kegalle, Matale, Kurunegala",
+    "description": "Worked as a trainee site engineer in Mobitel projects involving telecommunications infrastructure.",
     "achievements": [
-      "Assisted in 5G NR site integration",
-      "Performed drive tests and RF optimization",
-      "Worked with ZTE ZXMP transport equipment",
-      "Prepared network audit reports"
+      "Site engineering activities",
+      "Telecommunication infrastructure exposure",
+      "Worked across multiple regional sites",
+      "Supported Mobitel projects"
+    ],
+    "serviceLetters": [
+      {
+        "title": "ZTE Lanka Internship Completion Letter",
+        "file": "/certificates/zte.pdf",
+        "icon": "📄",
+        "date": "January 2024"
+      }
     ],
     "color": "#c43e1c"
   },
-  {
-    "company": "Freelance",
-    "role": "Full-Stack Web Developer",
-    "period": "2023 – Present",
-    "type": "Freelance",
-    "location": "Remote",
-    "description": "Designing and developing premium websites and web apps for clients across Sri Lanka and internationally. Specializing in React, Tailwind, and Supabase stacks.",
+    {
+    "company": "Sri Lanka Rupavahini (TV) Corporation",
+    "role": "Trainee Telecommunications Engineer",
+    "period": "November 2024 - February 2025",
+    "type": "Industrial Training",
+    "location": "Sri Lanka",
+    "description": "Gained experience in broadcast, networking, and IT infrastructure systems.",
     "achievements": [
-      "Delivered 10+ client projects",
-      "Built restaurant, salon, car service templates",
-      "Developed Electron desktop CRM app",
-      "Created reusable config-driven architectures"
+      "Worked with broadcast infrastructure",
+      "Exposure to networking systems",
+      "Worked with IT infrastructure",
+      "Learned operational workflows"
+    ],
+    "serviceLetters": [
+      {
+        "title": "Rupavahini Internship Completion Letter",
+        "file": "/certificates/slrc.pdf",
+        "icon": "📄",
+        "date": "February 2025"
+      }
     ],
     "color": "#0078d4"
   }

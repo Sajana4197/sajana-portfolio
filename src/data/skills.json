@@ -4,11 +4,11 @@
     "icon": "Monitor",
     "color": "#0078d4",
     "items": [
-      { "name": "React", "level": 90 },
-      { "name": "Tailwind CSS", "level": 92 },
-      { "name": "JavaScript", "level": 88 },
-      { "name": "GSAP / Framer Motion", "level": 80 },
-      { "name": "HTML / CSS", "level": 95 }
+      { "name": "React.js", "level": 80 },
+      { "name": "JavaScript", "level": 82 },
+      { "name": "HTML5", "level": 85 },
+      { "name": "CSS3", "level": 85 },
+      { "name": "Responsive Design", "level": 82 }
     ]
   },
   {
@@ -16,10 +16,10 @@
     "icon": "Server",
     "color": "#107c41",
     "items": [
-      { "name": "Node.js", "level": 75 },
-      { "name": "Supabase", "level": 82 },
-      { "name": "SQLite / SQL", "level": 78 },
-      { "name": "REST APIs", "level": 85 }
+      { "name": "Node.js", "level": 78 },
+      { "name": "Express.js", "level": 78 },
+      { "name": "MongoDB", "level": 75 },
+      { "name": "REST APIs", "level": 82 }
     ]
   },
   {
@@ -27,10 +27,10 @@
     "icon": "Palette",
     "color": "#8764b8",
     "items": [
-      { "name": "Figma", "level": 85 },
-      { "name": "Design Systems", "level": 80 },
-      { "name": "Glassmorphism", "level": 90 },
-      { "name": "Responsive Design", "level": 92 }
+      { "name": "Figma", "level": 65 },
+      { "name": "UI/UX Fundamentals", "level": 68 },
+      { "name": "Wireframing", "level": 65 },
+      { "name": "Responsive Layouts", "level": 72 }
     ]
   },
   {
@@ -38,10 +38,21 @@
     "icon": "Network",
     "color": "#c43e1c",
     "items": [
-      { "name": "TCP/IP", "level": 88 },
-      { "name": "Cisco / GNS3", "level": 82 },
-      { "name": "SDN / OpenFlow", "level": 75 },
-      { "name": "OFDM / 5G Concepts", "level": 72 }
+      { "name": "TCP/IP Fundamentals", "level": 95 },
+      { "name": "OSI & TCP/IP Models", "level": 95 },
+      { "name": "IPv4 Addressing & Subnetting", "level": 92 },
+      { "name": "Routing & Switching", "level": 90 },
+      { "name": "VLAN Configuration", "level": 90 },
+      { "name": "Network Performance Monitoring", "level": 90 },
+      { "name": "Network KPI Analysis", "level": 90 },
+      { "name": "QoS & QoE Concepts", "level": 88 },
+      { "name": "Method of Procedure (MOP)", "level": 90 },
+      { "name": "Cisco Packet Tracer", "level": 95 },
+      { "name": "Cisco Modeling Labs (CML)", "level": 88 },
+      { "name": "Basic Routing Protocols", "level": 88 },
+      { "name": "Basic Network Security", "level": 88 },
+      { "name": "Transmission Fundamentals", "level": 90 },
+      { "name": "Mobile Network Infrastructure", "level": 90 }
     ]
   },
   {
@@ -49,10 +60,18 @@
     "icon": "Cpu",
     "color": "#e3a21a",
     "items": [
-      { "name": "MATLAB", "level": 80 },
-      { "name": "Python", "level": 78 },
-      { "name": "Git / GitHub", "level": 88 },
-      { "name": "Linux / Bash", "level": 75 }
+      { "name": "Python", "level": 85 },
+      { "name": "C", "level": 82 },
+      { "name": "C++", "level": 78 },
+      { "name": "OpenCV", "level": 80 },
+      { "name": "TensorFlow", "level": 70 },
+      { "name": "Scikit-learn", "level": 75 },
+      { "name": "NumPy", "level": 85 },
+      { "name": "Pandas", "level": 82 },
+      { "name": "Git", "level": 85 },
+      { "name": "GitHub", "level": 85 },
+      { "name": "VS Code", "level": 90 },
+      { "name": "Jupyter Notebook", "level": 82 }
     ]
   }
 ]

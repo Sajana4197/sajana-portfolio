@@ -5,18 +5,18 @@ import skillsData from "../../data/skills.json";
 const VIEWS = ["categories", "detail"];
 
 const TOOLS = [
-  { name: "VS Code", icon: "🖊️", level: "Expert" },
-  { name: "Figma", icon: "🎨", level: "Advanced" },
-  { name: "Git / GitHub", icon: "🐙", level: "Advanced" },
+  { name: "Cisco Packet Tracer", icon: "🖧", level: "Expert" },
+  { name: "Cisco Modeling Labs", icon: "🌐", level: "Advanced" },
+  { name: "Wireshark", icon: "🦈", level: "Advanced" },
+  { name: "VS Code", icon: "💻", level: "Expert" },
   { name: "MATLAB", icon: "📊", level: "Intermediate" },
-  { name: "GNS3", icon: "🔌", level: "Intermediate" },
-  { name: "Cisco PT", icon: "🖧", level: "Intermediate" },
+  { name: "Jupyter Notebook", icon: "📒", level: "Advanced" },
+  { name: "Git / GitHub", icon: "🐙", level: "Advanced" },
+  { name: "Python", icon: "🐍", level: "Advanced" },
   { name: "Postman", icon: "📬", level: "Advanced" },
-  { name: "Linux / Bash", icon: "🐧", level: "Intermediate" },
-  { name: "Electron", icon: "⚡", level: "Intermediate" },
-  { name: "Supabase", icon: "🗄️", level: "Advanced" },
-  { name: "Vite", icon: "⚡", level: "Expert" },
-  { name: "npm / Node", icon: "📦", level: "Advanced" },
+  { name: "Linux", icon: "🐧", level: "Intermediate" },
+  { name: "OpenCV", icon: "📷", level: "Intermediate" },
+  { name: "TensorFlow", icon: "🧠", level: "Intermediate" },
 ];
 
 const LEVEL_COLOR = {
@@ -27,10 +27,26 @@ const LEVEL_COLOR = {
 };
 
 const CERT_BADGES = [
-  { label: "Cisco CCNA Concepts", icon: "🏅", color: "#c43e1c" },
-  { label: "ZTE 5G NR Certified", icon: "📡", color: "#0078d4" },
-  { label: "React Developer", icon: "⚛️", color: "#0078d4" },
-  { label: "Supabase Builder", icon: "🗄️", color: "#107c41" },
+  {
+    label: "Cisco CCNA: Introduction to Networks",
+    icon: "🌐",
+    color: "#0078d4",
+  },
+  {
+    label: "Cisco Introduction to Cybersecurity",
+    icon: "🛡️",
+    color: "#107c41",
+  },
+  {
+    label: "Fortinet Certified Fundamentals",
+    icon: "🔐",
+    color: "#c43e1c",
+  },
+  {
+    label: "Cisco CCNA: SRWE (In Progress)",
+    icon: "📡",
+    color: "#8764b8",
+  },
 ];
 
 /* Control Panel category tiles */
@@ -207,7 +223,10 @@ export default function SkillsWindow() {
           {CP_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => openCategory(cat)}
+              onClick={() => {
+                setActiveSection("skills"); // ← switch to skills tab
+                openCategory(cat); // ← then open the category
+              }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -784,9 +803,16 @@ function BadgesView() {
         <SectionHeader icon="⏳" title="In Progress" />
         <div className="space-y-3 max-w-md">
           {[
-            { label: "AWS Cloud Practitioner", pct: 45, color: "#e3a21a" },
-            { label: "CCNA Certification", pct: 30, color: "#c43e1c" },
-            { label: "Docker / DevOps", pct: 55, color: "#0078d4" },
+            {
+              label: "CCNA: Switching, Routing & Wireless Essentials",
+              pct: 60,
+              color: "#0078d4",
+            },
+            {
+              label: "AWS Certified Solutions Architect - Associate",
+              pct: 35,
+              color: "#e3a21a",
+            },
           ].map((item, i) => (
             <motion.div
               key={item.label}

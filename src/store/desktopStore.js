@@ -83,7 +83,7 @@ export const useDesktopStore = create((set, get) => ({
       const maxZ = Math.max(...s.windows.map((w) => w.zIndex), 99);
       return {
         windows: s.windows.map((w) =>
-          w.id === id ? { ...w, zIndex: maxZ + 1 } : w,
+          w.id === id ? { ...w, zIndex: maxZ + 1, minimized: false } : w,
         ),
         activeWindowId: id,
       };

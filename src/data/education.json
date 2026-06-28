@@ -1,20 +1,40 @@
 [
   {
-    "degree": "B.Sc. (Hons) in Electrical & Information Engineering",
+    "degree": "B.Sc. Eng. (Hons) in Electrical and Information Engineering",
     "institution": "University of Ruhuna",
     "faculty": "Faculty of Engineering",
-    "period": "2021 – Present",
-    "status": "Undergraduate",
-    "description": "Specializing in Telecommunications, Signal Processing, and Embedded Systems. Active in final-year research project on 5G resource allocation.",
+    "period": "2021 - 2026",
+    "status": "All examinations completed – Results pending",
+    "description": "Current GPA: 3.01/4.00 (Final Results Pending).",
+    "certificates": [{ "title": "Transcript of the degree", "file": "/certificates/degree.pdf", "icon": "📄", "year": "2026" }],
     "color": "#0078d4"
   },
   {
-    "degree": "Advanced Level (Physical Science)",
-    "institution": "D.S. Senanayake College",
-    "faculty": "Combined Maths, Physics, Chemistry",
-    "period": "2018 – 2020",
+    "degree": "Diploma in Information Technology (DiTEC)",
+    "institution": "ESOFT Metro Campus",
+    "period": "2020",
     "status": "Completed",
-    "description": "Achieved strong results enabling entry into the Faculty of Engineering.",
+    "description": "Diploma in Information Technology.",
+    "certificates": [{ "title": "Diploma Certificate", "file": "/certificates/diploma.pdf", "icon": "📄", "year": "2020" }],
     "color": "#107c41"
+  },
+  {
+    "degree": "G.C.E. Advanced Level",
+    "institution": "Dharmaraja College, Kandy",
+    "faculty": "Combined Mathematics, Physics, Chemistry",
+    "period": "2019",
+    "status": "Completed",
+    "description": "Results: Combined Mathematics (A), Physics (B), Chemistry (B).",
+    "certificates": [{ "title": "G.C.E. Advanced Level Certificate", "file": "/certificates/al.pdf", "icon": "📄", "year": "2019" }],
+    "color": "#c43e1c"
+  },
+  {
+    "degree": "G.C.E. Ordinary Level",
+    "institution": "Dharmaraja College, Kandy",
+    "period": "2015",
+    "status": "Completed",
+    "description": "Achieved 9A passes.",
+    "certificates": [{ "title": "G.C.E. Ordinary Level Certificate", "file": "/certificates/ol.pdf", "icon": "📄", "year": "2015" }],
+    "color": "#8764b8"
   }
 ]

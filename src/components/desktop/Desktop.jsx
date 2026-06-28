@@ -19,6 +19,8 @@ import ContactWindow from "../windows/ContactWindow";
 import CertificatesWindow from "../windows/CertificatesWindow";
 
 export const ICON_DEFS = [
+  { id: "thispc", label: "This PC", icon: "thispc", component: AboutWindow },
+  { id: "recycle", label: "Recycle Bin", icon: "recycle", component: null },
   { id: "about", label: "About Me", icon: "about", component: AboutWindow },
   {
     id: "projects",
@@ -76,8 +78,6 @@ export const ICON_DEFS = [
     icon: "linkedin",
     href: "https://linkedin.com/in/sajana-senanayake",
   },
-  { id: "thispc", label: "This PC", icon: "thispc", component: AboutWindow },
-  { id: "recycle", label: "Recycle Bin", icon: "recycle", component: null },
 ];
 
 export default function Desktop() {
