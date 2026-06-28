@@ -127,8 +127,8 @@ export default function BootScreen() {
           className="fixed inset-0 flex flex-col items-center justify-center overflow-hidden"
           style={{
             backgroundImage: isMobile
-              ? "url(/wallpaper-mobile.jpg)"
-              : "url(/wallpaper-login.jpg)",
+              ? "url(/wallpaper-mobile.webp)"
+              : "url(/wallpaper-login.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -166,7 +166,7 @@ export default function BootScreen() {
           >
             <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-white/20 shadow-2xl">
               <img
-                src="/avatar.png"
+                src="/avatar.webp"
                 alt="Sajana"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />

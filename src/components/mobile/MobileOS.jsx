@@ -136,7 +136,7 @@ export default function MobileOS() {
     <div
       className="fixed inset-0 overflow-hidden select-none"
       style={{
-        backgroundImage: "url(/wallpaper-mobile2.jpg)",
+        backgroundImage: "url(/wallpaper-mobile2.webp)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

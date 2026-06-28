@@ -430,7 +430,7 @@ function HomePane({ setActiveNav }) {
             style={{ boxShadow: "0 8px 32px rgba(0,120,212,0.4)" }}
           >
             <img
-              src="/avatar.png"
+              src="/avatar.webp"
               alt="Sajana"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />

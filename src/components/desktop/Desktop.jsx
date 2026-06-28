@@ -120,7 +120,7 @@ export default function Desktop() {
       className="fixed inset-0 overflow-hidden no-select"
       onContextMenu={handleDesktopRightClick}
       style={{
-        backgroundImage: "url(/wallpaper.jpg)",
+        backgroundImage: "url(/wallpaper.webp)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

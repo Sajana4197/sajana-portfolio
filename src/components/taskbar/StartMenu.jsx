@@ -275,7 +275,7 @@ export default function StartMenu() {
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full overflow-hidden">
                   <img
-                    src="/avatar.png"
+                    src="/avatar.webp"
                     alt="Sajana"
                     style={{
                       width: "100%",

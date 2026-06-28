@@ -137,7 +137,7 @@ export default function ContactWindow() {
               style={{ boxShadow: "0 4px 20px rgba(0,120,212,0.4)" }}
             >
               <img
-                src="/avatar.png"
+                src="/avatar.webp"
                 alt="Sajana"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
