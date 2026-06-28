@@ -163,67 +163,6 @@ export default function AboutWindow() {
         </div>
       )}
 
-      {/* ── Explorer toolbar ── */}
-      <div
-        className="flex items-center gap-2 px-3 py-2 shrink-0"
-        style={{
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-          background: "rgba(255,255,255,0.02)",
-        }}
-      >
-        {/* Back / Forward */}
-        <NavArrowBtn hov={backHov} setHov={setBackHov} dir="left" />
-        <NavArrowBtn hov={fwdHov} setHov={setFwdHov} dir="right" />
-
-        {/* Address bar */}
-        <div
-          className="flex items-center gap-2 flex-1 px-3 py-1.5 rounded-md"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            fontSize: 13,
-          }}
-        >
-          <span style={{ color: "#8888aa" }}>📁</span>
-          <span style={{ color: "#8888aa" }}>This PC</span>
-          <span style={{ color: "#555" }}> › </span>
-          <span style={{ color: "#0078d4" }}>About Me</span>
-          <span style={{ color: "#555" }}> › </span>
-          <span style={{ color: "#e8e8f0" }}>
-            {NAV_ITEMS.find((n) => n.id === activeNav)?.label ?? "Home"}
-          </span>
-        </div>
-
-        {/* Search */}
-        <div
-          className="flex items-center gap-2 px-3 py-1.5 rounded-md"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            width: 160,
-          }}
-        >
-          <svg width="13" height="13" viewBox="0 0 18 18" fill="none">
-            <circle
-              cx="7.5"
-              cy="7.5"
-              r="5"
-              stroke="rgba(255,255,255,0.4)"
-              strokeWidth="1.4"
-            />
-            <path
-              d="M11.5 11.5l3.5 3.5"
-              stroke="rgba(255,255,255,0.4)"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span style={{ fontSize: 13, color: "#8888aa" }}>
-            Search About Me
-          </span>
-        </div>
-      </div>
-
       {/* ── Ribbon tabs ── */}
       <div
         className="flex items-center gap-1 px-3 shrink-0"

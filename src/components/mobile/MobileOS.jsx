@@ -46,12 +46,17 @@ const ALL_APPS = [
     icon: "contact",
     component: ContactWindow,
   },
-  { id: "email", label: "Email", icon: "email", href: "mailto:your@email.com" },
+  {
+    id: "email",
+    label: "Email",
+    icon: "email",
+    href: "mailto:sjnsenanayake@gmail.com",
+  },
   {
     id: "whatsapp",
     label: "WhatsApp",
     icon: "whatsapp",
-    href: "https://wa.me/94XXXXXXXXX",
+    href: "https://wa.me/94766671613",
   },
   {
     id: "github",
@@ -63,7 +68,7 @@ const ALL_APPS = [
     id: "linkedin",
     label: "LinkedIn",
     icon: "linkedin",
-    href: "https://linkedin.com/in/sajana",
+    href: "https://linkedin.com/in/sajana-senanayake",
   },
 ];
 
