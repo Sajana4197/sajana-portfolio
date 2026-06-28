@@ -426,14 +426,14 @@ function HomePane({ setActiveNav }) {
           className="shrink-0"
         >
           <div
-            className={`${isMobile ? "w-20 h-20" : "w-28 h-28"} rounded-2xl flex items-center justify-center font-bold text-white shadow-2xl`}
-            style={{
-              background: "linear-gradient(135deg, #0078d4 0%, #4b2fa0 100%)",
-              boxShadow: "0 8px 32px rgba(0,120,212,0.4)",
-              fontSize: isMobile ? 24 : 36,
-            }}
+            className={`${isMobile ? "w-20 h-20" : "w-28 h-28"} rounded-2xl overflow-hidden shadow-2xl`}
+            style={{ boxShadow: "0 8px 32px rgba(0,120,212,0.4)" }}
           >
-            SS
+            <img
+              src="/avatar.png"
+              alt="Sajana"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
           <div className="flex items-center gap-1.5 mt-2 justify-center">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />

@@ -133,13 +133,14 @@ export default function ContactWindow() {
             style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
           >
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
-              style={{
-                background: "linear-gradient(135deg, #0078d4, #4b2fa0)",
-                boxShadow: "0 4px 20px rgba(0,120,212,0.4)",
-              }}
+              className="w-16 h-16 rounded-full overflow-hidden"
+              style={{ boxShadow: "0 4px 20px rgba(0,120,212,0.4)" }}
             >
-              SS
+              <img
+                src="/avatar.png"
+                alt="Sajana"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <div className="text-center">
               <p style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>

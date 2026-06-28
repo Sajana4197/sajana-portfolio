@@ -273,13 +273,16 @@ export default function StartMenu() {
             >
               {/* User */}
               <div className="flex items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white"
-                  style={{
-                    background: "linear-gradient(135deg, #0078d4, #4b2fa0)",
-                  }}
-                >
-                  SS
+                <div className="w-8 h-8 rounded-full overflow-hidden">
+                  <img
+                    src="/avatar.png"
+                    alt="Sajana"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <span
                   style={{ fontSize: 13, color: "#e8e8f0", fontWeight: 500 }}

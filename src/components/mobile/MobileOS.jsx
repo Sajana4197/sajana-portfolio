@@ -76,20 +76,18 @@ const DOCK_APPS = [
     component: ProjectsWindow,
   },
   {
+    id: "resume",
+    label: "Resume",
+    icon: "resume",
+    component: ResumeWindow,
+  },
+  {
     id: "contact",
     label: "Contact",
     icon: "contact",
     component: ContactWindow,
   },
-  {
-    id: "github",
-    label: "GitHub",
-    icon: "github",
-    href: "https://github.com/Sajana4197",
-  },
 ];
-
-const WALLPAPER = "linear-gradient(160deg,#0d0d1f 0%,#071428 50%,#0d0a1f 100%)";
 
 export default function MobileOS() {
   const [time, setTime] = useState(new Date());
@@ -137,7 +135,11 @@ export default function MobileOS() {
   return (
     <div
       className="fixed inset-0 overflow-hidden select-none"
-      style={{ background: WALLPAPER, fontFamily: "'Segoe UI', sans-serif" }}
+      style={{
+        backgroundImage: "url(/wallpaper-mobile2.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* ── Ambient ── */}
       <Ambient />

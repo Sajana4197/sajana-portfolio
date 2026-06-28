@@ -120,8 +120,10 @@ export default function Desktop() {
       className="fixed inset-0 overflow-hidden no-select"
       onContextMenu={handleDesktopRightClick}
       style={{
-        background:
-          "linear-gradient(135deg, #0d0d1a 0%, #071428 40%, #0d0a1f 100%)",
+        backgroundImage: "url(/wallpaper.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* ── Wallpaper ambient ── */}
@@ -176,41 +178,9 @@ export default function Desktop() {
 
 function WallpaperAmbient() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* large blue glow top-right */}
-      <div
-        className="absolute"
-        style={{
-          top: "-15%",
-          right: "-10%",
-          width: 700,
-          height: 700,
-          background:
-            "radial-gradient(circle, rgba(0,120,212,0.13) 0%, transparent 65%)",
-          borderRadius: "50%",
-        }}
-      />
-      {/* purple glow bottom-left */}
-      <div
-        className="absolute"
-        style={{
-          bottom: "-20%",
-          left: "-5%",
-          width: 600,
-          height: 600,
-          background:
-            "radial-gradient(circle, rgba(100,60,200,0.10) 0%, transparent 65%)",
-          borderRadius: "50%",
-        }}
-      />
-      {/* subtle center star */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 60% 40%, rgba(0,80,160,0.07) 0%, transparent 60%)",
-        }}
-      />
-    </div>
+    <div
+      className="absolute inset-0 pointer-events-none"
+      style={{ background: "rgba(0,0,0,0)" }}
+    />
   );
 }

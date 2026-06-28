@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDesktopStore } from "../../store/desktopStore";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const BOOT_STEPS = [
   { id: "logo", duration: 2200 },
@@ -9,6 +10,8 @@ const BOOT_STEPS = [
 
 export default function BootScreen() {
   const setPhase = useDesktopStore((s) => s.setPhase);
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   const [step, setStep] = useState("logo"); // 'logo' | 'login'
   const [dotCount, setDots] = useState(0);
   const [unlocking, setUnlock] = useState(false);
@@ -57,37 +60,63 @@ export default function BootScreen() {
       {step === "logo" && (
         <motion.div
           key="logo"
-          className="fixed inset-0 flex flex-col items-center justify-center bg-[#0a0a0f]"
+          className="fixed inset-0 flex flex-col items-center justify-center"
+          style={{
+            background: isMobile
+              ? "linear-gradient(160deg, #0a1628 0%, #0d1f0d 50%, #0a1628 100%)"
+              : "#0a0a0f",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Windows logo mark */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
-            className="mb-10"
-          >
-            <WindowsLogo />
-          </motion.div>
+          {/* Dark overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isMobile ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.7)",
+            }}
+          />
 
-          {/* Loading dots */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="flex gap-2"
-          >
-            {[0, 1, 2, 3].map((i) => (
-              <motion.span
-                key={i}
-                className="w-2 h-2 rounded-full bg-white"
-                animate={{ opacity: dotCount === i ? 1 : 0.18 }}
-                transition={{ duration: 0.2 }}
-              />
-            ))}
-          </motion.div>
+          <div className="relative flex flex-col items-center">
+            {isMobile ? <AndroidLogo /> : <WindowsLogo />}
+
+            {/* Brand text */}
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              style={{
+                marginTop: 24,
+                fontSize: isMobile ? 15 : 13,
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                fontWeight: 300,
+              }}
+            >
+              {isMobile ? "Android" : "Windows 11"}
+            </motion.p>
+
+            {/* Loading dots */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex gap-2 mt-10"
+            >
+              {[0, 1, 2, 3].map((i) => (
+                <motion.span
+                  key={i}
+                  className="w-2 h-2 rounded-full bg-white"
+                  animate={{ opacity: dotCount === i ? 1 : 0.18 }}
+                  transition={{ duration: 0.2 }}
+                />
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
       )}
 
@@ -96,36 +125,17 @@ export default function BootScreen() {
         <motion.div
           key="login"
           className="fixed inset-0 flex flex-col items-center justify-center overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.04 }}
-          transition={{ duration: 0.5 }}
           style={{
-            background:
-              "linear-gradient(135deg, #0d0d1a 0%, #0a1628 50%, #0d0d1a 100%)",
+            backgroundImage: isMobile
+              ? "url(/wallpaper-mobile.jpg)"
+              : "url(/wallpaper-login.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
           onClick={handleUnlock}
           onKeyDown={handleKey}
           tabIndex={0}
         >
-          {/* Ambient blobs */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div
-              className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(0,120,212,0.12) 0%, transparent 70%)",
-              }}
-            />
-            <div
-              className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(100,60,200,0.10) 0%, transparent 70%)",
-              }}
-            />
-          </div>
-
           {/* Clock */}
           <motion.div
             className="text-center mb-12 select-none"
@@ -154,16 +164,12 @@ export default function BootScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
           >
-            <div
-              className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-white/20 shadow-2xl"
-              style={{
-                background: "linear-gradient(135deg, #0078d4, #4b2fa0)",
-              }}
-            >
-              {/* Replace with <img src="/avatar.jpg" className="w-full h-full object-cover" /> */}
-              <div className="w-full h-full flex items-center justify-center text-3xl font-bold text-white">
-                SS
-              </div>
+            <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-white/20 shadow-2xl">
+              <img
+                src="/avatar.png"
+                alt="Sajana"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <div className="text-center">
               <div className="text-white text-xl font-medium">
@@ -285,49 +291,6 @@ export default function BootScreen() {
 
 /* ── SVG ICONS ── */
 
-function WindowsLogo() {
-  return (
-    <svg width="72" height="72" viewBox="0 0 88 88" fill="none">
-      <rect
-        x="4"
-        y="4"
-        width="37"
-        height="37"
-        rx="3"
-        fill="white"
-        fillOpacity="0.95"
-      />
-      <rect
-        x="47"
-        y="4"
-        width="37"
-        height="37"
-        rx="3"
-        fill="white"
-        fillOpacity="0.95"
-      />
-      <rect
-        x="4"
-        y="47"
-        width="37"
-        height="37"
-        rx="3"
-        fill="white"
-        fillOpacity="0.95"
-      />
-      <rect
-        x="47"
-        y="47"
-        width="37"
-        height="37"
-        rx="3"
-        fill="white"
-        fillOpacity="0.95"
-      />
-    </svg>
-  );
-}
-
 function NetworkIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -431,5 +394,151 @@ function PowerIcon() {
         strokeLinecap="round"
       />
     </svg>
+  );
+}
+
+/* ── Windows Logo (existing, keep as is) ── */
+function WindowsLogo() {
+  return (
+    <svg width="72" height="72" viewBox="0 0 88 88" fill="none">
+      <rect
+        x="4"
+        y="4"
+        width="37"
+        height="37"
+        rx="3"
+        fill="white"
+        fillOpacity="0.95"
+      />
+      <rect
+        x="47"
+        y="4"
+        width="37"
+        height="37"
+        rx="3"
+        fill="white"
+        fillOpacity="0.95"
+      />
+      <rect
+        x="4"
+        y="47"
+        width="37"
+        height="37"
+        rx="3"
+        fill="white"
+        fillOpacity="0.95"
+      />
+      <rect
+        x="47"
+        y="47"
+        width="37"
+        height="37"
+        rx="3"
+        fill="white"
+        fillOpacity="0.95"
+      />
+    </svg>
+  );
+}
+
+/* ── Android Logo ── */
+function AndroidLogo() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
+      className="flex flex-col items-center"
+    >
+      {/* Android robot SVG */}
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+        {/* Antenna left */}
+        <line
+          x1="26"
+          y1="18"
+          x2="18"
+          y2="8"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <circle cx="17" cy="7" r="3" fill="white" />
+        {/* Antenna right */}
+        <line
+          x1="54"
+          y1="18"
+          x2="62"
+          y2="8"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <circle cx="63" cy="7" r="3" fill="white" />
+        {/* Head */}
+        <path
+          d="M18 24 Q18 18 24 18 H56 Q62 18 62 24 V38 Q62 44 56 44 H24 Q18 44 18 38 Z"
+          fill="white"
+          fillOpacity="0.95"
+        />
+        {/* Eyes */}
+        <circle cx="30" cy="31" r="3.5" fill="#0a1628" />
+        <circle cx="50" cy="31" r="3.5" fill="#0a1628" />
+        {/* Body */}
+        <path
+          d="M14 48 Q14 44 18 44 H62 Q66 44 66 48 V66 Q66 72 60 72 H20 Q14 72 14 66 Z"
+          fill="white"
+          fillOpacity="0.90"
+        />
+        {/* Left arm */}
+        <path
+          d="M14 46 Q8 46 8 52 V62 Q8 68 14 68"
+          stroke="white"
+          strokeOpacity="0.90"
+          strokeWidth="7"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Right arm */}
+        <path
+          d="M66 46 Q72 46 72 52 V62 Q72 68 66 68"
+          stroke="white"
+          strokeOpacity="0.90"
+          strokeWidth="7"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Left leg */}
+        <path
+          d="M28 72 V78 Q28 82 24 82 Q20 82 20 78 V72"
+          fill="white"
+          fillOpacity="0.85"
+        />
+        {/* Right leg */}
+        <path
+          d="M52 72 V78 Q52 82 56 82 Q60 82 60 78 V72"
+          fill="white"
+          fillOpacity="0.85"
+        />
+        {/* Body buttons */}
+        <circle cx="40" cy="54" r="2" fill="rgba(0,0,0,0.2)" />
+        <circle cx="40" cy="62" r="2" fill="rgba(0,0,0,0.2)" />
+      </svg>
+
+      {/* Glow */}
+      <div
+        style={{
+          position: "absolute",
+          width: 120,
+          height: 120,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(61,220,132,0.25) 0%, transparent 70%)",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: -1,
+        }}
+      />
+    </motion.div>
   );
 }
