@@ -131,3 +131,30 @@ body {
     scrollbar-width: none;
   }
 }
+
+@media (max-width: 767px) {
+  /* Hide File Explorer toolbar (back/fwd + address bar + search) */
+  .android-app-content > div > div:first-child {
+    display: none !important;
+  }
+
+  /* Hide sidebar */
+  .android-app-content [style*="width: 200px"],
+  .android-app-content [style*="width: 190px"],
+  .android-app-content [style*="width: 180px"],
+  .android-app-content [style*="width: 160px"],
+  .android-app-content [style*="width: 240px"] {
+    display: none !important;
+  }
+
+  /* Full width content */
+  .android-app-content .flex-1 {
+    width: 100% !important;
+  }
+
+  /* Scrollable tab bar */
+  .android-app-content > div > div:nth-child(2) {
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+}

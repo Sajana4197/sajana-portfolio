@@ -101,6 +101,69 @@ export default function AboutWindow() {
       style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
     >
       {/* ── Explorer toolbar ── */}
+      {!isMobile && (
+        <div
+          className="flex items-center gap-2 px-3 py-2 shrink-0"
+          style={{
+            borderBottom: "1px solid rgba(255,255,255,0.07)",
+            background: "rgba(255,255,255,0.02)",
+          }}
+        >
+          {/* Back / Forward */}
+          <NavArrowBtn hov={backHov} setHov={setBackHov} dir="left" />
+          <NavArrowBtn hov={fwdHov} setHov={setFwdHov} dir="right" />
+
+          {/* Address bar */}
+          <div
+            className="flex items-center gap-2 flex-1 px-3 py-1.5 rounded-md"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              fontSize: 13,
+            }}
+          >
+            <span style={{ color: "#8888aa" }}>📁</span>
+            <span style={{ color: "#8888aa" }}>This PC</span>
+            <span style={{ color: "#555" }}> › </span>
+            <span style={{ color: "#0078d4" }}>About Me</span>
+            <span style={{ color: "#555" }}> › </span>
+            <span style={{ color: "#e8e8f0" }}>
+              {NAV_ITEMS.find((n) => n.id === activeNav)?.label ?? "Home"}
+            </span>
+          </div>
+
+          {/* Search */}
+          <div
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              width: 160,
+            }}
+          >
+            <svg width="13" height="13" viewBox="0 0 18 18" fill="none">
+              <circle
+                cx="7.5"
+                cy="7.5"
+                r="5"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="1.4"
+              />
+              <path
+                d="M11.5 11.5l3.5 3.5"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span style={{ fontSize: 13, color: "#8888aa" }}>
+              Search About Me
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Explorer toolbar ── */}
       <div
         className="flex items-center gap-2 px-3 py-2 shrink-0"
         style={{
@@ -342,10 +405,15 @@ export default function AboutWindow() {
 ══════════════════════════════════════════ */
 
 function HomePane({ setActiveNav }) {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+
   return (
-    <div className="p-8">
-      {/* Hero */}
-      <div className="flex items-start gap-8 mb-10">
+    <div className={isMobile ? "p-4" : "p-8"}>
+      {/* Hero — stack vertically on mobile */}
+      <div
+        className={`flex ${isMobile ? "flex-col items-center text-center" : "items-start"} gap-5 mb-6`}
+      >
         {/* Avatar */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -358,16 +426,16 @@ function HomePane({ setActiveNav }) {
           className="shrink-0"
         >
           <div
-            className="w-28 h-28 rounded-2xl flex items-center justify-center text-4xl font-bold text-white shadow-2xl"
+            className={`${isMobile ? "w-20 h-20" : "w-28 h-28"} rounded-2xl flex items-center justify-center font-bold text-white shadow-2xl`}
             style={{
               background: "linear-gradient(135deg, #0078d4 0%, #4b2fa0 100%)",
               boxShadow: "0 8px 32px rgba(0,120,212,0.4)",
+              fontSize: isMobile ? 24 : 36,
             }}
           >
             SS
           </div>
-          {/* Status badge */}
-          <div className="flex items-center gap-1.5 mt-3 justify-center">
+          <div className="flex items-center gap-1.5 mt-2 justify-center">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span style={{ fontSize: 11, color: "#4ade80" }}>
               Available for hire
@@ -378,13 +446,13 @@ function HomePane({ setActiveNav }) {
         {/* Info */}
         <div className="flex-1">
           <motion.div
-            initial={{ opacity: 0, x: -12 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15 }}
           >
             <h1
               style={{
-                fontSize: 28,
+                fontSize: isMobile ? 20 : 28,
                 fontWeight: 700,
                 color: "#fff",
                 marginBottom: 4,
@@ -395,59 +463,56 @@ function HomePane({ setActiveNav }) {
             </h1>
             <p
               style={{
-                fontSize: 15,
+                fontSize: isMobile ? 12 : 15,
                 color: "#0078d4",
                 fontWeight: 500,
-                marginBottom: 8,
+                marginBottom: 6,
               }}
             >
               Electrical & Information Engineering Undergraduate
             </p>
-            <p style={{ fontSize: 13, color: "#8888aa", marginBottom: 12 }}>
-              📍 Sri Lanka &nbsp;·&nbsp; 🎓 University of Ruhuna &nbsp;·&nbsp;
-              💼 Open to opportunities
+            <p style={{ fontSize: 11, color: "#8888aa", marginBottom: 10 }}>
+              📍 Sri Lanka · 🎓 University of Ruhuna
             </p>
             <p
               style={{
-                fontSize: 14,
+                fontSize: isMobile ? 12 : 14,
                 color: "#bbb",
                 lineHeight: 1.8,
                 maxWidth: 480,
               }}
             >
-              I'm an engineering undergraduate passionate about the intersection
-              of
-              <span style={{ color: "#0078d4" }}> telecommunications</span>,
-              <span style={{ color: "#107c41" }}> software engineering</span>,
-              and
-              <span style={{ color: "#8764b8" }}> premium product design</span>.
-              I build things that work beautifully — from 5G network
-              infrastructure to pixel-perfect web apps.
+              I build things that work beautifully — from
+              <span style={{ color: "#0078d4" }}> 5G networks </span>
+              to
+              <span style={{ color: "#107c41" }}> full-stack web apps</span>.
             </p>
           </motion.div>
 
           {/* CTA buttons */}
           <motion.div
-            className="flex items-center gap-3 mt-6"
+            className={`flex ${isMobile ? "justify-center" : ""} items-center gap-3 mt-4`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
             <CTAButton primary onClick={() => setActiveNav("timeline")}>
-              View My Journey →
+              My Journey →
             </CTAButton>
             <CTAButton
-              onClick={() => window.open("https://github.com/sajana", "_blank")}
+              onClick={() =>
+                window.open("https://github.com/Sajana4197", "_blank")
+              }
             >
-              GitHub Profile
+              GitHub
             </CTAButton>
           </motion.div>
         </div>
       </div>
 
-      {/* Stats row */}
+      {/* Stats — 2 cols on mobile, 4 on desktop */}
       <motion.div
-        className="grid grid-cols-4 gap-4 mb-10"
+        className={`grid ${isMobile ? "grid-cols-2" : "grid-cols-4"} gap-3 mb-6`}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
@@ -458,21 +523,28 @@ function HomePane({ setActiveNav }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 + i * 0.07 }}
-            className="flex flex-col items-center justify-center rounded-xl py-5"
+            className="flex flex-col items-center justify-center rounded-xl py-4"
             style={{
               background: "rgba(0,120,212,0.08)",
               border: "1px solid rgba(0,120,212,0.20)",
             }}
           >
-            <span style={{ fontSize: 28, fontWeight: 700, color: "#0078d4" }}>
+            <span
+              style={{
+                fontSize: isMobile ? 22 : 28,
+                fontWeight: 700,
+                color: "#0078d4",
+              }}
+            >
               {s.value}
             </span>
             <span
               style={{
-                fontSize: 12,
+                fontSize: 10,
                 color: "#8888aa",
-                marginTop: 4,
+                marginTop: 3,
                 textAlign: "center",
+                padding: "0 4px",
               }}
             >
               {s.label}
@@ -481,20 +553,22 @@ function HomePane({ setActiveNav }) {
         ))}
       </motion.div>
 
-      {/* Quick links grid */}
+      {/* Quick links — 2 cols on mobile */}
       <div>
         <p
           style={{
-            fontSize: 12,
+            fontSize: 11,
             color: "#8888aa",
             letterSpacing: "0.08em",
             textTransform: "uppercase",
-            marginBottom: 12,
+            marginBottom: 10,
           }}
         >
           Quick Access
         </p>
-        <div className="grid grid-cols-3 gap-3">
+        <div
+          className={`grid ${isMobile ? "grid-cols-2" : "grid-cols-3"} gap-2`}
+        >
           {[
             { label: "My Projects", icon: "📁", color: "#e3a21a", nav: null },
             { label: "Skills", icon: "⚙️", color: "#0078d4", nav: null },
@@ -513,14 +587,14 @@ function HomePane({ setActiveNav }) {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 + i * 0.05 }}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer"
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer"
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 transition: "all 0.15s",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = `rgba(${item.color === "#e3a21a" ? "227,162,26" : "0,120,212"},0.12)`;
+                e.currentTarget.style.background = item.color + "15";
                 e.currentTarget.style.borderColor = item.color + "44";
               }}
               onMouseLeave={(e) => {
@@ -529,8 +603,8 @@ function HomePane({ setActiveNav }) {
               }}
               onClick={() => item.nav && setActiveNav(item.nav)}
             >
-              <span style={{ fontSize: 22 }}>{item.icon}</span>
-              <span style={{ fontSize: 13, color: "#e8e8f0" }}>
+              <span style={{ fontSize: 18 }}>{item.icon}</span>
+              <span style={{ fontSize: 12, color: "#e8e8f0" }}>
                 {item.label}
               </span>
             </motion.div>
@@ -540,7 +614,6 @@ function HomePane({ setActiveNav }) {
     </div>
   );
 }
-
 function AboutPane() {
   return (
     <div className="p-8 max-w-2xl">

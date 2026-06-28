@@ -216,14 +216,8 @@ export default function MobileOS() {
               </motion.div>
             </motion.div>
 
-            {/* App grid pages */}
-            <motion.div
-              className="flex-1 overflow-hidden px-4"
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
-              onDragEnd={handleDragEnd}
-            >
+            {/* App grid — NOT draggable, separate swipe up zone */}
+            <div className="flex-1 overflow-hidden px-4">
               <div
                 style={{
                   display: "flex",
@@ -251,11 +245,11 @@ export default function MobileOS() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Page dots */}
             {pages.length > 1 && (
-              <div className="flex justify-center gap-1.5 pb-3">
+              <div className="flex justify-center gap-1.5 pb-2">
                 {pages.map((_, i) => (
                   <div
                     key={i}
@@ -271,11 +265,19 @@ export default function MobileOS() {
               </div>
             )}
 
-            {/* Swipe up hint */}
+            {/* Swipe up zone — dedicated touch area */}
             <motion.div
               className="flex flex-col items-center pb-2"
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={0.3}
+              onDragEnd={(e, info) => {
+                if (info.offset.y < -30) setDrawerOpen(true);
+              }}
+              onClick={() => setDrawerOpen(true)}
               animate={{ y: [0, -4, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
+              style={{ cursor: "grab", touchAction: "none" }}
             >
               <div
                 style={{
