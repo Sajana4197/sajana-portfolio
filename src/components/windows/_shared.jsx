@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 
 export function NavBtn({ children, onClick, disabled }) {
   const [hov, setHov] = useState(false);
@@ -237,5 +239,83 @@ export function ActionBtn({ icon, label, onClick, color }) {
         ↗
       </span>
     </button>
+  );
+}
+
+export function MobilePdfViewer({ title, file, onClose }) {
+  return createPortal(
+    <motion.div
+      className="fixed inset-0 flex flex-col"
+      style={{ zIndex: 9999, background: "rgba(14,14,24,0.99)" }}
+      initial={{ opacity: 0, y: "100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "100%" }}
+      transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+    >
+      {/* Header */}
+      <div
+        className="flex items-center gap-3 px-3 py-3 shrink-0"
+        style={{
+          background: "rgba(0,0,0,0.5)",
+          backdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          paddingTop: 36,
+        }}
+      >
+        <motion.button
+          onClick={onClose}
+          whileTap={{ scale: 0.85 }}
+          style={{
+            width: 36,
+            height: 36,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            borderRadius: 18,
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M13 4L7 10l6 6"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.button>
+        <span
+          style={{
+            fontSize: 15,
+            fontWeight: 600,
+            color: "#fff",
+            flex: 1,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {title}
+        </span>
+      </div>
+
+      {/* PDF */}
+      <div className="flex-1 overflow-hidden">
+        <iframe
+          src={file}
+          title={title}
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            background: "#fff",
+          }}
+        />
+      </div>
+    </motion.div>,
+    document.body,
   );
 }

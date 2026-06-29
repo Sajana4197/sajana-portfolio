@@ -14,51 +14,60 @@ import {
   ViewToggle,
 } from "./_shared.jsx";
 import { useDesktopStore } from "../../store/desktopStore";
+import { MobilePdfViewer } from "./_shared.jsx";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const TABS = ["Timeline", "Details"];
 
 export default function ExperienceWindow() {
   const { openWindow } = useDesktopStore();
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+  const [mobilePdf, setMobilePdf] = useState(null);
   const [activeTab, setActiveTab] = useState("Timeline");
   const [selected, setSelected] = useState(null);
 
   function openServiceLetter(letter) {
-    openWindow(
-      `service-${letter.title}`,
-      letter.title,
-      () => (
-        <div
-          className="flex flex-col h-full"
-          style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
-        >
+    if (isMobile) {
+      setMobilePdf(letter);
+    } else {
+      openWindow(
+        `service-${letter.title}`,
+        letter.title,
+        () => (
           <div
-            className="flex items-center gap-2 px-3 py-2 shrink-0"
-            style={{
-              borderBottom: "1px solid rgba(255,255,255,0.07)",
-              background: "rgba(255,255,255,0.02)",
-            }}
+            className="flex flex-col h-full"
+            style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
           >
-            <span style={{ fontSize: 13, color: "#8888aa" }}>📄</span>
-            <span style={{ fontSize: 13, color: "#0078d4" }}>
-              {letter.title}
-            </span>
-          </div>
-          <div className="flex-1 overflow-hidden">
-            <iframe
-              src={letter.file}
-              title={letter.title}
+            <div
+              className="flex items-center gap-2 px-3 py-2 shrink-0"
               style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-                background: "#fff",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(255,255,255,0.02)",
               }}
-            />
+            >
+              <span style={{ fontSize: 13, color: "#8888aa" }}>📄</span>
+              <span style={{ fontSize: 13, color: "#0078d4" }}>
+                {letter.title}
+              </span>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <iframe
+                src={letter.file}
+                title={letter.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  background: "#fff",
+                }}
+              />
+            </div>
           </div>
-        </div>
-      ),
-      "experience",
-    );
+        ),
+        "experience",
+      );
+    }
   }
 
   return (
@@ -66,6 +75,17 @@ export default function ExperienceWindow() {
       className="flex flex-col h-full"
       style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
     >
+      {/* Mobile PDF viewer */}
+      <AnimatePresence>
+        {mobilePdf && (
+          <MobilePdfViewer
+            title={mobilePdf.title}
+            file={mobilePdf.file}
+            onClose={() => setMobilePdf(null)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* ── Toolbar ── */}
       <div
         className="flex items-center gap-2 px-3 py-2 shrink-0"

@@ -14,6 +14,8 @@ import {
   ViewToggle,
 } from "./_shared.jsx";
 import { useDesktopStore } from "../../store/desktopStore";
+import { MobilePdfViewer } from "./_shared.jsx";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 export default function EducationWindow() {
   const [activeTab, setActiveTab] = useState("Overview");
@@ -109,6 +111,9 @@ export default function EducationWindow() {
 }
 
 function EduOverview({ data }) {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+
   return (
     <div className="max-w-2xl">
       <SectionHeader icon="🎓" title="Education" />
@@ -119,15 +124,15 @@ function EduOverview({ data }) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.12 }}
-            className="p-6 rounded-2xl"
+            className="p-5 rounded-2xl"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: `1.5px solid ${edu.color}33`,
             }}
           >
-            <div className="flex items-start gap-5">
+            <div className="flex items-start gap-4">
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0"
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
                 style={{
                   background: edu.color + "22",
                   border: `2px solid ${edu.color}44`,
@@ -135,40 +140,33 @@ function EduOverview({ data }) {
               >
                 🎓
               </div>
-              <div className="flex-1">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3
-                      style={{
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: "#fff",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {edu.degree}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        color: edu.color,
-                        fontWeight: 500,
-                        marginTop: 2,
-                      }}
-                    >
-                      {edu.institution}
-                    </p>
-                    <p style={{ fontSize: 12, color: "#8888aa", marginTop: 1 }}>
-                      {edu.faculty}
-                    </p>
-                  </div>
-                  <div className="flex flex-col items-end gap-1 shrink-0 ml-4">
+              <div className="flex-1 min-w-0">
+                {/* Title + badges stacked */}
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+                  <h3
+                    style={{
+                      fontSize: isMobile ? 13 : 15,
+                      fontWeight: 700,
+                      color: "#fff",
+                      lineHeight: 1.4,
+                      flex: 1,
+                      minWidth: 0,
+                    }}
+                  >
+                    {edu.degree}
+                  </h3>
+                  {/* Badges — wrap below title on mobile */}
+                  <div
+                    className="flex flex-col items-end gap-1 shrink-0"
+                    style={{ maxWidth: "100%" }}
+                  >
                     <span
                       className="px-2 py-0.5 rounded text-xs"
                       style={{
                         background: edu.color + "22",
                         color: edu.color,
                         border: `1px solid ${edu.color}44`,
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {edu.period}
@@ -178,6 +176,10 @@ function EduOverview({ data }) {
                       style={{
                         background: "rgba(255,255,255,0.08)",
                         color: "#8888aa",
+                        whiteSpace: isMobile ? "normal" : "nowrap",
+                        textAlign: "right",
+                        maxWidth: isMobile ? 160 : "none",
+                        lineHeight: 1.4,
                       }}
                     >
                       {edu.status}
@@ -187,9 +189,21 @@ function EduOverview({ data }) {
                 <p
                   style={{
                     fontSize: 13,
+                    color: edu.color,
+                    fontWeight: 500,
+                    marginBottom: 2,
+                  }}
+                >
+                  {edu.institution}
+                </p>
+                <p style={{ fontSize: 12, color: "#8888aa", marginBottom: 8 }}>
+                  {edu.faculty}
+                </p>
+                <p
+                  style={{
+                    fontSize: isMobile ? 12 : 13,
                     color: "#aaa",
                     lineHeight: 1.7,
-                    marginTop: 12,
                   }}
                 >
                   {edu.description}
@@ -205,46 +219,66 @@ function EduOverview({ data }) {
 
 function EduCertificates({ data }) {
   const { openWindow } = useDesktopStore();
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+  const [mobilePdf, setMobilePdf] = useState(null);
 
   function openCert(cert) {
-    openWindow(
-      `edu-cert-${cert.title}`,
-      cert.title,
-      () => (
-        <div
-          className="flex flex-col h-full"
-          style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
-        >
+    if (isMobile) {
+      setMobilePdf(cert);
+    } else {
+      openWindow(
+        `edu-cert-${cert.title}`,
+        cert.title,
+        () => (
           <div
-            className="flex items-center gap-2 px-3 py-2 shrink-0"
-            style={{
-              borderBottom: "1px solid rgba(255,255,255,0.07)",
-              background: "rgba(255,255,255,0.02)",
-            }}
+            className="flex flex-col h-full"
+            style={{ color: "#e8e8f0", fontFamily: "'Segoe UI', sans-serif" }}
           >
-            <span style={{ fontSize: 13, color: "#8888aa" }}>🏆</span>
-            <span style={{ fontSize: 13, color: "#0078d4" }}>{cert.title}</span>
-          </div>
-          <div className="flex-1 overflow-hidden">
-            <iframe
-              src={cert.file}
-              title={cert.title}
+            <div
+              className="flex items-center gap-2 px-3 py-2 shrink-0"
               style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-                background: "#fff",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(255,255,255,0.02)",
               }}
-            />
+            >
+              <span style={{ fontSize: 13, color: "#8888aa" }}>🏆</span>
+              <span style={{ fontSize: 13, color: "#0078d4" }}>
+                {cert.title}
+              </span>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <iframe
+                src={cert.file}
+                title={cert.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  background: "#fff",
+                }}
+              />
+            </div>
           </div>
-        </div>
-      ),
-      "🏆",
-    );
+        ),
+        "certificates",
+      );
+    }
   }
 
   return (
-    <div className="p-6">
+    <div className="p-4">
+      {/* Mobile PDF viewer overlay */}
+      <AnimatePresence>
+        {mobilePdf && (
+          <MobilePdfViewer
+            title={mobilePdf.title}
+            file={mobilePdf.file}
+            onClose={() => setMobilePdf(null)}
+          />
+        )}
+      </AnimatePresence>
+
       <SectionHeader icon="🏆" title="Education Certificates" />
       <div className="space-y-8">
         {data.map((edu, i) => (
@@ -254,7 +288,6 @@ function EduCertificates({ data }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
           >
-            {/* Education header */}
             <div className="flex items-center gap-3 mb-4">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-lg shrink-0"
@@ -283,12 +316,11 @@ function EduCertificates({ data }) {
               </span>
             </div>
 
-            {/* Certificates grid */}
             {edu.certificates && edu.certificates.length > 0 ? (
               <div
                 className="grid gap-3"
                 style={{
-                  gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
                 }}
               >
                 {edu.certificates.map((cert, j) => (
@@ -311,7 +343,6 @@ function EduCertificates({ data }) {
                     }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    {/* Icon */}
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl shrink-0"
                       style={{
@@ -321,8 +352,6 @@ function EduCertificates({ data }) {
                     >
                       {cert.icon}
                     </div>
-
-                    {/* Info */}
                     <div className="flex-1 min-w-0">
                       <p
                         style={{
@@ -340,8 +369,6 @@ function EduCertificates({ data }) {
                         {cert.year}
                       </p>
                     </div>
-
-                    {/* Open indicator */}
                     <div className="shrink-0 flex flex-col items-center gap-1">
                       <div
                         className="w-6 h-6 rounded-full flex items-center justify-center"
@@ -376,7 +403,6 @@ function EduCertificates({ data }) {
               </div>
             )}
 
-            {/* Divider between institutions */}
             {i < data.length - 1 && (
               <div
                 className="mt-6"
