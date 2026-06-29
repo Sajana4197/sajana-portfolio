@@ -413,7 +413,7 @@ function SearchResult({ def, onLaunch }) {
         transition: "background 0.12s",
       }}
     >
-      <span style={{ fontSize: 22 }}>{def.icon}</span>
+      <AppIcon id={def.icon} size={18} />
       <div>
         <div style={{ fontSize: 14, color: "#e8e8f0" }}>{def.label}</div>
         {def.href && (

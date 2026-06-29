@@ -4,7 +4,7 @@ import { useDesktopStore } from "../../store/desktopStore";
 import Clock from "./Clock";
 import { ICON_DEFS } from "../desktop/Desktop";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import { TaskbarIcon } from "../icons/AppIcons";
+import { TaskbarIcon, AppIcon } from "../icons/AppIcons";
 
 /* Taskbar pinned apps */
 const PINNED = [
@@ -241,7 +241,8 @@ export default function Taskbar() {
                         setSearchOpen(false);
                       }}
                     >
-                      <span style={{ fontSize: 22 }}>{def.icon}</span>
+                      {/* ← Replace emoji span with AppIcon */}
+                      <AppIcon id={def.icon} size={18} />
                       <span style={{ fontSize: 14, color: "#e8e8f0" }}>
                         {def.label}
                       </span>
@@ -672,7 +673,7 @@ function QuickItem({ def, onClick }) {
         transition: "background 0.12s",
       }}
     >
-      <span style={{ fontSize: 24 }}>{def.icon}</span>
+      <AppIcon id={def.icon} size={22} />
       <span style={{ fontSize: 11, color: "#e8e8f0", textAlign: "center" }}>
         {def.label}
       </span>
